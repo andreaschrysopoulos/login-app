@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.btn {
+  @apply transition-all duration-150;
+  @apply bg-blue-500 hover:bg-blue-600;
+  @apply dark:bg-blue-600 dark:hover:bg-blue-700;
+  @apply text-white;
+  @apply dark:text-stone-100 hover:dark:text-white;
+  @apply mt-2 p-2.5;
+  @apply rounded-lg;
+}

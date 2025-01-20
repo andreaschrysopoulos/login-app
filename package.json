@@ -1,0 +1,21 @@
+{
+  "name": "login-app",
+  "version": "1.0.0",
+  "description": "Simple Login Application with Express",
+  "license": "MIT",
+  "author": "Andreas Chrysopoulos",
+  "type": "commonjs",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^4.21.2",
+    "express-ejs-layouts": "^2.5.1",
+    "express-session": "^1.18.1"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.17"
+  }
+}

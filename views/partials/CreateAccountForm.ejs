@@ -1,0 +1,31 @@
+<section class="flex flex-col w-[500px] mx-auto my-auto px-12 py-10 bg-stone-50 dark:bg-stone-950 rounded-lg">
+
+  <h2 class="mb-8 text-2xl font-bold dark:text-stone-200">Create new account</h2>
+
+  <form id="login-form" action="" class="flex flex-col">
+
+    <!-- Email -->
+
+    <label class="lblInput" for="email">Email</label>
+    <input class="txtInput" type="email" id="email" name="email" required>
+
+    <!-- Password -->
+    <label class="lblInput" for="password">Password</label>
+    <input class="txtInput" type="password" id="password" name="password" required>
+
+    <!-- Repeat Password -->
+    <label class="lblInput" for="rpassword">Repeat Password</label>
+    <input class="txtInput" type="password" id="rpassword" name="rpassword" required>
+
+    <!-- Message -->
+    <div id="message" class="self-center"></div>
+
+    <!-- Submit Button -->
+    <button class="btn" type="submit">Create account</button>
+  </form>
+
+  <!-- Already have an account? Log in -->
+  <div class="formExtra">Already have an account? <a
+      class="hover:underline" href="/">Sign in</a></div>
+
+</section>

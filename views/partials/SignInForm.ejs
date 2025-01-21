@@ -1,0 +1,27 @@
+<section class="flex flex-col w-[500px] m-auto px-12 py-10 bg-stone-50 dark:bg-stone-950 rounded-lg">
+
+  <h2 class="mb-8 text-2xl font-bold dark:text-stone-200">Sign in</h2>
+
+  <form id="login-form" class="flex flex-col">
+
+    <!-- Email -->
+    <label class="lblInput" for="email">Email</label>
+    <input class="txtInput" type="email" id="email" name="email" required>
+
+    <!-- Password -->
+    <label class="lblInput " for="password">Password</label>
+    <input class="txtInput" type="password" id="password" name="password" required>
+
+    <!-- Message -->
+    <div id="message" class="self-center"></div>
+
+    <!-- Button -->
+    <button class="btn" type="submit">Sign in</button>
+  </form>
+
+  <!-- Create new account -->
+  <div class="w-fit mt-5 text-stone-700 dark:text-stone-300 self-center">
+    <a class="hover:underline" href="/register">Create new account</a>
+  </div>
+
+</section>

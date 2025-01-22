@@ -30,8 +30,12 @@ document.querySelector('#login-form').addEventListener('submit', async (e) => {
           message.style.display = 'block';
           button.style.display = "none";
           redirect();
-        } else {
+        } else if(text === 'credentials') {
           message.innerText = "Incorrect credentials.";
+          message.style.color = 'rgb(220, 0, 0)';
+          message.style.display = 'block';
+        } else {
+          message.innerText = "Unknown error.";
           message.style.color = 'rgb(220, 0, 0)';
           message.style.display = 'block';
         }

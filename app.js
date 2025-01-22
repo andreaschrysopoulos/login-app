@@ -42,6 +42,13 @@ const findUserByEmail = async (email) => {
   return result.rows[0];
 };
 
+const deleteUser = async (email) => {
+  await pool.query(
+    'DELETE FROM users WHERE email = $1',
+    [email]
+  );
+};
+
 // Session init
 app.use(session({
   secret: 'your_secret_key', // Replace with a secure secret key
@@ -85,18 +92,17 @@ app.post('/login', async (req, res) => {
 
   try {
     const user = await findUserByEmail(email);
-    if (user && await bcrypt.compare(password, user.password_Hash)) {
+
+    if (user && await bcrypt.compare(password, user.password_hash)) {
       req.session.user = { email }; // Store user info in session
-      console.log("Successful Auth");
       res.send('OK');
 
     } else {
-      console.log("Unsuccessful Auth");
-      res.send('error');
+      res.send('credentials');
     }
   } catch (error) {
     console.error(error);
-    res.status(500).send('Error logging in.');
+    res.send('error');
   }
 });
 
@@ -110,6 +116,43 @@ app.post('/logout', (req, res) => {
       res.redirect('/');
     }
   });
+});
+
+// POST: CREATE NEW ACCOUNT
+app.post('/createAccount', async (req, res) => {
+  const { email, password, rpassword } = req.body;
+  const bcrypt = require('bcrypt');
+
+  const user = await findUserByEmail(email);
+  if (user) {
+    res.send('exists');
+  }
+  else {
+    if (password !== rpassword) {
+      res.send('nomatch');
+    } else {
+      await registerUser(email, await bcrypt.hash(password, 10));
+      res.send('ok');
+    }
+  }
+});
+
+
+app.post('/deleteAccount', async (req, res) => {
+  const user = req.session.user;
+  if (user) {
+    deleteUser(user.email);
+    req.session.destroy(err => {
+      if (err) {
+        console.log(err);
+        res.status(500).send('Could not log out.');
+      } else {
+        res.redirect('/');
+      }
+    });
+  } else {
+    console.log('error');
+  }
 });
 
 // Start Server

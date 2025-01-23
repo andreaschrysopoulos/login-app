@@ -50,11 +50,12 @@ const deleteUser = async (email) => {
 };
 
 // Session init
+app.set('trust proxy', 1);
 app.use(session({
   secret: 'your_secret_key', // Replace with a secure secret key
   resave: false,
   saveUninitialized: true,
-  cookie: { secure: false } // Set to true if using HTTPS
+  cookie: { secure: true } // Set to true if using HTTPS
 }));
 
 

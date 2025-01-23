@@ -692,6 +692,11 @@ video {
   font-weight: 600;
 }
 
+.text-red-600 {
+  --tw-text-opacity: 1;
+  color: rgb(220 38 38 / var(--tw-text-opacity, 1));
+}
+
 .text-stone-700 {
   --tw-text-opacity: 1;
   color: rgb(68 64 60 / var(--tw-text-opacity, 1));

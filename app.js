@@ -15,7 +15,7 @@ app.use(expressLayout);
 
 app.set('view engine', 'ejs');
 app.set('views', './views');
-app.set('layout', 'layouts/layout.ejs');
+app.set('layout', 'layouts/Layout.ejs');
 
 // PostgreSQL connection setup
 const pool = new Pool({
@@ -62,7 +62,7 @@ app.use(session({
 // HOME Route
 app.get('/', (req, res) => {
   if (req.session.user) {
-    res.render('SignedInPage', { title: "Clandestine Operations" });
+    res.render('SignedInPage', { title: "Clandestine Operations", layout: 'layouts/SignedInLayout.ejs' });
   } else {
     res.render('SignInPage', { title: "Sign in | Clandestine Operations" });
   }
@@ -78,7 +78,7 @@ app.get('/register', (req, res) => {
 
 app.get('/settings', (req, res) => {
   if (req.session.user) {
-    res.render('SettingsPage', { title: "Settings | Clandestine Operations" });
+    res.render('SettingsPage', { title: "Settings | Clandestine Operations", layout: 'layouts/SignedInLayout.ejs' });
   } else {
 
   }

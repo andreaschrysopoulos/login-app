@@ -1,0 +1,31 @@
+<section
+  class="flex p-3 w-full dark:bg-stone-950 bg-stone-100 border-b dark:border-stone-800 border-stone-200 dark:shadow-sm ">
+
+  <div class="flex w-full justify-end relative">
+
+    <img id="userImg" src="profile.jpg" width="35" class="rounded-full hover:cursor-pointer border">
+
+    <div id="popupMenu" class="flex flex-col bg-white border p-2 absolute z-50 top-10 hidden rounded-lg">
+
+      <ul class="flex flex-col">
+
+        <li class="hover:bg-stone-200 rounded-lg p-1 px-3 text-end">
+          <a href="/" class="">Home</a>
+        </li>
+
+        <li class="hover:bg-stone-200 rounded-lg p-1 px-3 text-end">
+          <a href="/settings">Settings</a>
+        </li>
+
+        <li class="hover:bg-stone-200 rounded-lg p-1 px-3 text-end">
+          <form class="" action="/logout" method="post">
+            <button class="" type="submit">Sign out</button>
+          </form>
+        </li>
+
+      </ul>
+
+    </div>
+
+  </div>
+</section>

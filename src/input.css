@@ -53,6 +53,13 @@
   @apply border border-stone-200 dark:border-stone-800;
 }
 
+.formContainer1 {
+  @apply flex flex-col w-[1000px] h-fit min-h-fit m-14 px-12 py-10;
+  @apply bg-stone-100 dark:bg-stone-950;
+  @apply rounded-lg;
+  @apply border border-stone-200 dark:border-stone-800;
+}
+
 .formHeader {
   @apply mb-8 text-2xl font-bold;
   @apply dark:text-stone-200;

@@ -76,6 +76,14 @@ app.get('/register', (req, res) => {
   }
 });
 
+app.get('/settings', (req, res) => {
+  if (req.session.user) {
+    res.render('SettingsPage', { title: "Settings | Clandestine Operations" });
+  } else {
+
+  }
+});
+
 // GET /data for HomePage
 app.get('/data', (req, res) => {
   if (req.session.user) {
@@ -155,6 +163,7 @@ app.post('/deleteAccount', async (req, res) => {
     console.log('error');
   }
 });
+
 
 // Start Server
 app.listen(PORT, () => {

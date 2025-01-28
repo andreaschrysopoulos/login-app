@@ -1,28 +1,19 @@
 <script src="signedIn.js" defer></script>
 
-<section
-  class="flex p-3 w-full dark:bg-stone-950 bg-stone-100 border-b dark:border-stone-800 border-stone-200 dark:shadow-sm ">
+<!-- Create LoginMenu -->
+<%- include('partials/LoginMenu') %>
 
-  <p id="user"
-    class="dark:text-stone-300 text-stone-700 pl-2 pr-5 border-r dark:border-stone-800 border-stone-300 h-full flex items-center">
-  </p>
+  <section id="settingsContainer" class="">
+    <div class="flex flex-1 justify-center items-center">
+      <section class="formContainer1">
 
-  <div class="flex gap-5 w-full justify-end">
-    <form
-      class="border dark:border-stone-900 hover:dark:bg-stone-900 border-stone-300 hover:bg-white rounded-lg transition-all duration-200"
-      action="/logout" method="post">
-      <button class="dark:text-stone-200 hover:dark:text-stone-50 px-2 py-1" type="submit">Sign out</button>
-    </form>
+        <h2 class="userEmail formHeader text-center"></h2>
 
-    <form
-      class="border dark:border-stone-900 hover:dark:bg-stone-900 border-stone-300 hover:bg-white rounded-lg transition-all duration-200"
-      action="/deleteAccount" method="post">
-      <button class="dark:text-red-500 hover:dark:text-red-500 text-red-600 px-2 py-1" type="submit">Delete account</button>
-    </form>
-  </div>
+      </section>
+    </div>
 
-</section>
+  </section>
 
-<section class="flex-1">
+  <section class="flex-1">
 
-</section>
+  </section>

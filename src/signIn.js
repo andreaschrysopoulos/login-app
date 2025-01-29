@@ -12,6 +12,7 @@ document.querySelector('#login-form').addEventListener('submit', async (e) => {
   const password = document.getElementById('password').value.trim();
   const message = document.getElementById('message');
   const button = document.querySelector('button');
+  
   try {
     const response = await fetch('/login', {
       method: 'POST',

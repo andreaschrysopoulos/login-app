@@ -1,68 +1,23 @@
-@import 'tailwindcss';
-
-/*
-  The default border color has changed to `currentColor` in Tailwind CSS v4,
-  so we've added these compatibility styles to make sure everything still
-  looks the same as it did with Tailwind CSS v3.
-
-  If we ever want to remove these styles, we need to add an explicit border
-  color utility to any element that depends on these defaults.
-*/
-@layer base {
-  *,
-  ::after,
-  ::before,
-  ::backdrop,
-  ::file-selector-button {
-    border-color: var(--color-gray-200, currentColor);
-  }
-}
+@import "tailwindcss";
 
 .btn {
-  /* Transitions */
-  @apply transition-colors duration-150;
-
-  /* Background Color */
-  @apply bg-blue-500 hover:bg-blue-600;
-
-  /* Text Color */
-  @apply text-stone-50 hover:text-white;
-
-  /* Dark Mode: Background Color */
-  @apply dark:bg-blue-600 dark:hover:bg-blue-700;
-
-  /* Dark Mode: Text Color */
-  @apply dark:text-stone-100 dark:hover:text-white;
-
-  /* Marging & Padding */
-  @apply mt-5 p-2.5;
-
-  /* Rounded */
-  @apply rounded-lg;
+  @apply transition-colors duration-150 bg-blue-500 hover:bg-blue-600 text-stone-50 hover:text-white dark:bg-blue-600 dark:hover:bg-blue-700 dark:text-stone-100 hover:dark:text-white mt-5 p-2.5 rounded-lg cursor-pointer;
 }
 
+.btn1 {
+  @apply disabled:bg-stone-600 disabled:hover:bg-stone-600 disabled:cursor-default transition-colors duration-150 bg-blue-500 hover:bg-blue-600 text-stone-50 hover:text-white dark:bg-blue-600 dark:hover:bg-blue-700 dark:text-stone-100 hover:dark:text-white py-1.5 px-3 rounded-lg cursor-pointer;
+}
 
 .textInput {
-  @apply text-sm px-3 py-2 mb-5;
-  @apply focus:outline-blue-300 dark:focus:outline-blue-900 focus:outline-2 focus:outline;
-  @apply border border-stone-200 dark:border-stone-800;
-  @apply rounded-lg;
-  @apply dark:bg-stone-900;
-  @apply dark:text-stone-100;
+  @apply text-sm px-3 py-2 mb-5 focus:outline-blue-300 dark:focus:outline-blue-900 focus:outline-2 dark:text-stone-100 border border-stone-200 dark:border-stone-800 rounded-lg dark:bg-stone-900 bg-white;
 }
 
 .lblInput {
-  @apply mb-2;
-  @apply text-stone-700 dark:text-stone-300;
+  @apply mb-2 text-stone-700 dark:text-stone-300;
 }
 
 .textInput1 {
-  @apply text-sm px-3 py-2;
-  @apply focus:outline-blue-300 dark:focus:outline-blue-900 focus:outline-2 focus:outline;
-  @apply border border-stone-200 dark:border-stone-800;
-  @apply rounded-lg;
-  @apply dark:bg-stone-900;
-  @apply dark:text-stone-100;
+  @apply text-sm px-3 py-2 focus:outline-blue-300 dark:focus:outline-blue-900 focus:outline-2 dark:bg-stone-900 bg-white dark:text-stone-100 border border-stone-200 dark:border-stone-800 rounded-lg;
 }
 
 .lblInput1 {
@@ -70,26 +25,17 @@
 }
 
 .formExtra {
-  @apply w-fit mt-5 text-stone-700 dark:text-stone-300 self-center;
-  @apply text-sm;
+  @apply w-fit mt-5 text-stone-700 dark:text-stone-300 self-center text-sm;
 }
 
 .formContainer {
-  @apply flex flex-col w-[500px] h-fit min-h-fit m-14 px-12 py-10;
-  @apply bg-stone-100 dark:bg-stone-950;
-  @apply rounded-lg;
-  @apply border border-stone-200 dark:border-stone-800;
+  @apply flex flex-col w-[500px] h-fit min-h-fit m-14 px-12 py-10 bg-stone-100 dark:bg-stone-950 rounded-lg border border-stone-200 dark:border-stone-800;
 }
 
 .formContainer1 {
-  @apply flex flex-col w-[1000px] h-auto min-h-fit m-14 px-12 py-10;
-  @apply bg-stone-100 dark:bg-stone-950;
-  @apply rounded-lg;
-  @apply border border-stone-200 dark:border-stone-800;
-  @apply items-center;
+  @apply flex flex-col w-[1000px] h-auto min-h-fit m-14 px-12 py-10 bg-stone-100 dark:bg-stone-950 rounded-lg border border-stone-200 dark:border-stone-800 items-center;
 }
 
 .formHeader {
-  @apply mb-8 text-2xl font-bold;
-  @apply dark:text-stone-200;
+  @apply mb-8 text-2xl font-bold dark:text-stone-200;
 }

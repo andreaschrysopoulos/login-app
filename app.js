@@ -41,6 +41,13 @@ const editEmail = async (oldEmail, newEmail) => {
   );
 }
 
+const editPassword = async (user, passwordHash) => {
+  await pool.query(
+    'UPDATE users SET password_hash = $1 WHERE email = $2',
+    [passwordHash, user]
+  );
+}
+
 const findUserByEmail = async (email) => {
   const result = await pool.query(
     'SELECT * FROM users WHERE email = $1',
@@ -191,17 +198,20 @@ app.post('/editEmail', async (req, res) => {
 });
 
 app.post('/editPass', async (req, res) => {
-  const { email } = req.body;
-
+  const { password, rpassword } = req.body;
   const user = req.session.user;
+  const bcrypt = require('bcrypt');
+
   try {
     if (user) {
-      if (email) {
-        await editEmail(user.email, email);
-        req.session.user.email = email;
-        req.session.save();
+      if (password !== rpassword) {
+        res.send('nomatch');
+      } else {
+        await editPassword(user.email, await bcrypt.hash(password, 10));
         res.send('ok');
       }
+    } else {
+      res.send("unauthorized");
     }
   } catch (error) {
     res.send(error);

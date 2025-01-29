@@ -4,7 +4,7 @@ const popupMenu = document.querySelector('#popupMenu');
 
 fetch('/data')
   .then(respose => respose.text())
-  .then(data => header.forEach((item) => { item.innerHTML = `${data}` }))
+  .then(data => header.forEach((item) => { item.value = `${data}` }))
   .catch(error => console.log(error));
 
 

@@ -62,7 +62,7 @@ app.use(session({
 // HOME Route
 app.get('/', (req, res) => {
   if (req.session.user) {
-    res.render('SignedInPage', { title: "Clandestine Operations", layout: 'layouts/SignedInLayout.ejs' });
+    res.render('HomePage', { title: "Home | Clandestine Operations", layout: 'layouts/SignedInLayout.ejs' });
   } else {
     res.render('SignInPage', { title: "Sign in | Clandestine Operations" });
   }

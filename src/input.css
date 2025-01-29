@@ -41,6 +41,19 @@
   @apply text-stone-700 dark:text-stone-300;
 }
 
+.textInput1 {
+  @apply text-sm px-3 py-2;
+  @apply focus:outline-blue-300 dark:focus:outline-blue-900 focus:outline-2 focus:outline;
+  @apply border border-stone-200 dark:border-stone-800;
+  @apply rounded-lg;
+  @apply dark:bg-stone-900;
+  @apply dark:text-stone-100;
+}
+
+.lblInput1 {
+  @apply text-stone-700 dark:text-stone-300;
+}
+
 .formExtra {
   @apply w-fit mt-5 text-stone-700 dark:text-stone-300 self-center;
   @apply text-sm;
@@ -54,10 +67,11 @@
 }
 
 .formContainer1 {
-  @apply flex flex-col w-[1000px] h-fit min-h-fit m-14 px-12 py-10;
+  @apply flex flex-col w-[1000px] h-auto min-h-fit m-14 px-12 py-10;
   @apply bg-stone-100 dark:bg-stone-950;
   @apply rounded-lg;
   @apply border border-stone-200 dark:border-stone-800;
+  @apply items-center;
 }
 
 .formHeader {

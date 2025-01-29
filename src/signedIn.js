@@ -27,6 +27,12 @@ document.querySelector("#email").addEventListener('input', (event) => {
 
 document.querySelector("#password").addEventListener('input', (event) => {
   document.querySelector("#edit-password").disabled = false;
+  document.getElementById('message').style.opacity = '0';
+});
+
+document.querySelector("#rpassword").addEventListener('input', (event) => {
+  document.querySelector("#edit-password").disabled = false;
+  document.getElementById('message').style.opacity = '0';
 });
 
 document.querySelector('#form-email').addEventListener('submit', async (e) => {
@@ -91,5 +97,56 @@ document.querySelector('#form-pass').addEventListener('submit', async (e) => {
   if (!form.checkValidity()) {
     form.reportValidity();
     return;
+  }
+
+  const password = document.querySelector('#password').value.trim();
+  const rpassword = document.querySelector('#rpassword').value.trim();
+  const message = document.getElementById('message');
+
+  try {
+    const response = await fetch('/editPass', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ password, rpassword })
+    })
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      console.log(errorData.error);
+    } else {
+      response.text().then(text => {
+        if (text === 'ok') {
+          message.innerText = "Password updated";
+          message.style.color = 'rgb(40, 184, 0)';
+          message.style.opacity = '1';
+          setTimeout(() => {
+            message.style.opacity = '0';
+          }, 2000);
+          document.querySelector('#password').value = '';
+          document.querySelector('#rpassword').value = '';
+          document.querySelector("#edit-password").disabled = true;
+
+        } else if (text === 'nomatch') {
+          message.innerText = "Passwords don't match.";
+          message.style.color = 'rgb(220, 0, 0)';
+          message.style.opacity = '1';
+          setTimeout(() => {
+            message.style.opacity = '0';
+          }, 2000);
+        } else {
+          message.innerText = "Error";
+          message.style.color = 'rgb(220, 0, 0)';
+          message.style.opacity = '1';
+          setTimeout(() => {
+            message.style.opacity = '0';
+          }, 2000);
+          console.log(text);
+        }
+      }
+      )
+    }
+
+  } catch (error) {
+    console.log(error);
   }
 });

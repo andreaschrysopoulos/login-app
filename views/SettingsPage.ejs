@@ -8,16 +8,21 @@
     <div class="mt-2 mb-8 w-full border-b dark:border-stone-800 border-stone-300"></div>
 
 
-    <form action="/edit" method="post" class="grid grid-cols-2 gap-3 items-center my-10 auto-cols-auto w-fit" style="">
+    <div class="flex flex-col gap-5 w-fit">
+      <form id="form-email" action="/editEmail" method="post" class="flex w-full items-center gap-3">
+        <label for="email" class="lblInput1 w-20 text-right">Email:</label>
+        <input id="email" type="email" name="email" class="userEmail textInput1 w-96" required></input>
+        <button id="edit-email" class="btn1 w-40" type="submit" disabled>Change email</button>
+      </form>
 
-      <label for="t-email" class="lblInput1 w-fit">Email:</label>
-      <input id="t-email" name="email" class="userEmail textInput1 w-96"></input>
+      <form id="form-pass" action="/editPass" method="post" class="flex w-full items-center gap-3">
+        <label for="password" class="lblInput1 w-20 text-right">Password:</label>
+        <input id="password" name="password" type="password" class="textInput1 w-96" required></input>
+        <button id="edit-password" class="btn1 w-40" type="submit" disabled>Change password</button>
 
-      <label for="password" class="lblInput1 w-fit">Password:</label>
-      <input id="password" name="password" type="password" class="textInput1"></input>
+      </form>
 
-    </form>
-
+    </div>
 
     <!-- Divider -->
     <div class="mt-auto mb-8 w-full border-b dark:border-stone-800 border-stone-300"></div>
@@ -26,9 +31,11 @@
       class="w-fit border dark:border-stone-900 dark:hover:bg-stone-900 border-stone-300 hover:bg-white rounded-lg transition-all duration-200"
       action="/deleteAccount" method="post">
 
-      <button class="dark:text-red-500 dark:hover:text-red-500 text-red-600 px-2 py-1" type="submit">Delete
+      <button class="dark:text-red-500 dark:hover:text-red-500 text-red-600 px-2 py-1 cursor-pointer" type="submit">Delete
         account</button>
     </form>
 
   </section>
+
+  <span id="message" class="transition-all duration-100 absolute top-[500px] bg-stone-900 px-4 py-2 rounded-md border border-stone-800" style="opacity: 0"></span>
 </div>

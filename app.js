@@ -34,6 +34,13 @@ const registerUser = async (email, passwordHash) => {
   );
 };
 
+const editEmail = async (oldEmail, newEmail) => {
+  await pool.query(
+    'UPDATE users SET email = $1 WHERE email = $2',
+    [newEmail, oldEmail]
+  );
+}
+
 const findUserByEmail = async (email) => {
   const result = await pool.query(
     'SELECT * FROM users WHERE email = $1',
@@ -80,7 +87,7 @@ app.get('/settings', (req, res) => {
   if (req.session.user) {
     res.render('SettingsPage', { title: "Settings | Clandestine Operations", layout: 'layouts/SignedInLayout.ejs' });
   } else {
-
+    res.redirect('/');
   }
 });
 
@@ -162,6 +169,44 @@ app.post('/deleteAccount', async (req, res) => {
   } else {
     console.log('error');
   }
+});
+
+app.post('/editEmail', async (req, res) => {
+  const { email } = req.body;
+
+  const user = req.session.user;
+  try {
+    if (user) {
+      if (email) {
+        await editEmail(user.email, email);
+        req.session.user.email = email;
+        req.session.save();
+        res.send('ok');
+      }
+    }
+  } catch (error) {
+    res.send(error);
+  }
+
+});
+
+app.post('/editPass', async (req, res) => {
+  const { email } = req.body;
+
+  const user = req.session.user;
+  try {
+    if (user) {
+      if (email) {
+        await editEmail(user.email, email);
+        req.session.user.email = email;
+        req.session.save();
+        res.send('ok');
+      }
+    }
+  } catch (error) {
+    res.send(error);
+  }
+
 });
 
 

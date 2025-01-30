@@ -4,7 +4,7 @@ const expressLayout = require('express-ejs-layouts');
 
 const { Pool } = require('pg');
 require('dotenv').config();
-require('path');
+const path = require('path');
 const app = express();
 const PORT = 3120;
 
@@ -13,8 +13,8 @@ app.use(express.json());
 app.use(expressLayout);
 
 app.set('view engine', 'ejs');
-app.set('views', './views');
-app.set('layout', 'layouts/Layout.ejs');
+app.set('views', path.join(__dirname, 'views'));
+app.set('layout', path.join(__dirname, 'views/layouts/Layout.ejs'));
 
 // PostgreSQL connection setup
 const pool = new Pool({

@@ -1,6 +1,6 @@
 <script src="signedIn.js" defer></script>
 
-<div class="flex justify-center flex-1">
+<div class="flex justify-center flex-auto">
   <section class="formContainer1">
 
     <h2 class="formHeader text-center">Settings</h2>
@@ -8,24 +8,30 @@
     <div class="mt-2 mb-8 w-full border-b dark:border-stone-800 border-stone-300"></div>
 
 
-    <div class="flex flex-col gap-10 w-fit items-center h-full justify-center">
-      <form id="form-email" action="/editEmail" method="post" class="flex w-full items-center gap-3">
-        <label for="email" class="lblInput1 w-40 text-right">Email:</label>
-        <input id="email" type="email" name="email" class="userEmail textInput1 w-96" required></input>
-        <button id="edit-email" class="btn1 w-40" type="submit" disabled>Change email</button>
+    <div class="flex flex-col gap-7 w-fit items-center h-full justify-start">
+      <form id="form-email" action="/editEmail" method="post" class="flex w-full items-end gap-3">
+        <div class="flex flex-col">
+          <label for="email" class="lblInput1 w-fit">Email:</label>
+          <input id="email" type="email" name="email" class="userEmail textInput1 w-96" required></input>
+        </div>
+        <button id="edit-email" class="btn1 w-fit min-w-fit" type="submit" disabled>Change email</button>
       </form>
 
-      <form id="form-pass" action="/editPass" method="post" class="flex flex-col w-full items-center gap-3">
+      <form id="form-pass" action="/editPass" method="post" class="flex flex-col w-full items-end gap-5">
 
-        <div class="flex w-full items-center gap-3">
-          <label for="password" class="lblInput1 w-40 text-right">Password:</label>
-          <input id="password" name="password" type="password" class="textInput1 w-96" required></input>
+        <div class="flex flex-col w-full items-start">
+          <label for="newPassword" class="lblInput1 w-fit">New Password:</label>
+          <input id="newPassword" name="newPassword" type="password" class="textInput1 w-96" autocomplete="off"
+            required="required"></input>
         </div>
 
-        <div class="flex w-full items-center gap-3">
-          <label for="rpassword" class="lblInput1 w-40 text-right">Repeat Password:</label>
-          <input id="rpassword" name="rpassword" type="password" class="textInput1 w-96" required></input>
-          <button id="edit-password" class="btn1 w-40" type="submit" disabled>Change password</button>
+        <div class="flex w-full items-end gap-3">
+          <div class="flex flex-col">
+            <label for="confirmNewPassword" class="lblInput1 w-fit">Confirm New Password:</label>
+            <input id="confirmNewPassword" name="confirmNewPassword" type="password" class="textInput1 w-96"
+              autocomplete="new-password" required="required"></input>
+          </div>
+          <button id="edit-password" class="btn1 w-fit min-w-fit" type="submit" disabled>Update password</button>
         </div>
 
       </form>
@@ -39,11 +45,14 @@
       class="w-fit border dark:border-stone-900 dark:hover:bg-stone-900 border-stone-300 hover:bg-white rounded-lg transition-all duration-200"
       action="/deleteAccount" method="post">
 
-      <button class="dark:text-red-500 dark:hover:text-red-500 text-red-600 px-2 py-1 cursor-pointer" type="submit">Delete
+      <button class="dark:text-red-500 dark:hover:text-red-500 text-red-600 px-2 py-1 cursor-pointer"
+        type="submit">Delete
         account</button>
     </form>
 
   </section>
 
-  <span id="message" class="transition-all duration-100 absolute top-[500px] bg-stone-900 px-4 py-2 rounded-md border border-stone-800" style="opacity: 0"></span>
+  <span id="message"
+    class="transition-all duration-100 absolute bottom-[30%] dark:bg-stone-900 bg-white px-4 py-2 rounded-lg border dark:border-stone-800 border-stone-300 shadow-sm"
+    style="opacity: 0"></span>
 </div>

@@ -1,6 +1,9 @@
 const header = document.querySelectorAll('.userEmail');
 const img = document.querySelector('#userImg');
 const popupMenu = document.querySelector('#popupMenu');
+const messageDuration = 3000;
+
+let intervalID;
 
 fetch('/data')
   .then(respose => respose.text())
@@ -25,12 +28,12 @@ document.querySelector("#email").addEventListener('input', (event) => {
 
 });
 
-document.querySelector("#password").addEventListener('input', (event) => {
+document.querySelector("#newPassword").addEventListener('input', (event) => {
   document.querySelector("#edit-password").disabled = false;
   document.getElementById('message').style.opacity = '0';
 });
 
-document.querySelector("#rpassword").addEventListener('input', (event) => {
+document.querySelector("#confirmNewPassword").addEventListener('input', (event) => {
   document.querySelector("#edit-password").disabled = false;
   document.getElementById('message').style.opacity = '0';
 });
@@ -65,18 +68,14 @@ document.querySelector('#form-email').addEventListener('submit', async (e) => {
           message.innerText = "Email updated";
           message.style.color = 'rgb(40, 184, 0)';
           message.style.opacity = '1';
-          setTimeout(() => {
-            message.style.opacity = '0';
-          }, 2000);
+          doThing(messageDuration, () => message.style.opacity = '0');
           document.querySelector("#edit-email").disabled = true;
 
         } else {
           message.innerText = "Error";
           message.style.color = 'rgb(220, 0, 0)';
           message.style.opacity = '1';
-          setTimeout(() => {
-            message.style.opacity = '0';
-          }, 2000);
+          doThing(messageDuration, () => message.style.opacity = '0');
           console.log(text);
         }
       }
@@ -89,6 +88,13 @@ document.querySelector('#form-email').addEventListener('submit', async (e) => {
 
 });
 
+function doThing(time, action) {
+  clearTimeout(intervalID);
+  intervalID = setTimeout(() => {
+    action();
+  }, time);
+}
+
 document.querySelector('#form-pass').addEventListener('submit', async (e) => {
   e.preventDefault();
 
@@ -99,15 +105,15 @@ document.querySelector('#form-pass').addEventListener('submit', async (e) => {
     return;
   }
 
-  const password = document.querySelector('#password').value.trim();
-  const rpassword = document.querySelector('#rpassword').value.trim();
+  const newPassword = document.querySelector('#newPassword').value.trim();
+  const confirmNewPassword = document.querySelector('#confirmNewPassword').value.trim();
   const message = document.getElementById('message');
 
   try {
     const response = await fetch('/editPass', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ password, rpassword })
+      body: JSON.stringify({ newPassword, confirmNewPassword })
     })
 
     if (!response.ok) {
@@ -119,27 +125,22 @@ document.querySelector('#form-pass').addEventListener('submit', async (e) => {
           message.innerText = "Password updated";
           message.style.color = 'rgb(40, 184, 0)';
           message.style.opacity = '1';
-          setTimeout(() => {
-            message.style.opacity = '0';
-          }, 2000);
-          document.querySelector('#password').value = '';
-          document.querySelector('#rpassword').value = '';
+          doThing(messageDuration, () => message.style.opacity = '0');
+          document.querySelector('#newPassword').value = '';
+          document.querySelector('#confirmNewPassword').value = '';
           document.querySelector("#edit-password").disabled = true;
 
         } else if (text === 'nomatch') {
           message.innerText = "Passwords don't match.";
           message.style.color = 'rgb(220, 0, 0)';
           message.style.opacity = '1';
-          setTimeout(() => {
-            message.style.opacity = '0';
-          }, 2000);
+          doThing(messageDuration, () => message.style.opacity = '0');
+
         } else {
           message.innerText = "Error";
           message.style.color = 'rgb(220, 0, 0)';
           message.style.opacity = '1';
-          setTimeout(() => {
-            message.style.opacity = '0';
-          }, 2000);
+          doThing(messageDuration, () => message.style.opacity = '0');
           console.log(text);
         }
       }

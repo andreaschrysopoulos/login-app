@@ -4,8 +4,7 @@ const expressLayout = require('express-ejs-layouts');
 
 const { Pool } = require('pg');
 require('dotenv').config();
-
-const path = require('path');
+require('path');
 const app = express();
 const PORT = 3120;
 
@@ -164,7 +163,7 @@ app.post('/createAccount', async (req, res) => {
 app.post('/deleteAccount', async (req, res) => {
   const user = req.session.user;
   if (user) {
-    deleteUser(user.email);
+    await deleteUser(user.email);
     req.session.destroy(err => {
       if (err) {
         console.log(err);
@@ -198,16 +197,16 @@ app.post('/editEmail', async (req, res) => {
 });
 
 app.post('/editPass', async (req, res) => {
-  const { password, rpassword } = req.body;
+  const { newPassword, confirmNewPassword } = req.body;
   const user = req.session.user;
   const bcrypt = require('bcrypt');
 
   try {
     if (user) {
-      if (password !== rpassword) {
+      if (newPassword !== confirmNewPassword) {
         res.send('nomatch');
       } else {
-        await editPassword(user.email, await bcrypt.hash(password, 10));
+        await editPassword(user.email, await bcrypt.hash(newPassword, 10));
         res.send('ok');
       }
     } else {

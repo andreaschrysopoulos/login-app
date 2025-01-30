@@ -5,7 +5,7 @@
 }
 
 .btn1 {
-  @apply disabled:bg-stone-600 disabled:hover:bg-stone-600 disabled:cursor-default transition-colors duration-150 bg-blue-500 hover:bg-blue-600 text-stone-50 hover:text-white dark:bg-blue-600 dark:hover:bg-blue-700 dark:text-stone-100 hover:dark:text-white py-1.5 px-3 rounded-lg cursor-pointer;
+  @apply text-sm dark:disabled:bg-stone-600 disabled:bg-stone-400  disabled:cursor-default transition-colors duration-150 bg-blue-500 hover:bg-blue-600 text-stone-50 hover:text-white dark:bg-blue-600 dark:hover:bg-blue-700 dark:text-stone-100 hover:dark:text-white py-2 px-3.5 rounded-lg cursor-pointer border dark:border-stone-800 border-stone-200;
 }
 
 .textInput {
@@ -21,7 +21,7 @@
 }
 
 .lblInput1 {
-  @apply text-stone-700 dark:text-stone-300;
+  @apply text-sm mb-1 text-stone-700 dark:text-stone-300;
 }
 
 .formExtra {
@@ -29,11 +29,11 @@
 }
 
 .formContainer {
-  @apply flex flex-col w-[500px] h-fit min-h-fit m-14 px-12 py-10 bg-stone-100 dark:bg-stone-950 rounded-lg border border-stone-200 dark:border-stone-800;
+  @apply flex flex-col w-[500px] h-fit m-14 px-12 py-10 bg-stone-100 dark:bg-stone-950 rounded-lg border border-stone-200 dark:border-stone-800;
 }
 
 .formContainer1 {
-  @apply flex flex-col w-[1000px] h-auto min-h-fit m-14 px-12 py-10 bg-stone-100 dark:bg-stone-950 rounded-lg border border-stone-200 dark:border-stone-800 items-center;
+  @apply flex flex-col w-[1000px] m-14 px-12 py-10 min-w-max bg-stone-100 dark:bg-stone-950 rounded-lg border border-stone-200 dark:border-stone-800 items-center;
 }
 
 .formHeader {

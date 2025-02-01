@@ -10,7 +10,7 @@
       <form id="form-email" action="/editEmail" method="post" class="flex flex-col">
         <label for="email" class="lblInput1 ">Email:</label>
         <input id="email" type="email" name="email" class="userEmail textInput1" required></input>
-        <button id="edit-email" class="btn1 self-end" type="submit" disabled>Change email</button>
+        <button id="edit-email" class="btn1 self-end" type="submit" disabled>Update email</button>
 
       </form>
 
@@ -26,7 +26,13 @@
           <label for="confirmNewPassword" class="lblInput1 ">Confirm New Password:</label>
           <input id="confirmNewPassword" name="confirmNewPassword" type="password" class="textInput1  "
             autocomplete="new-password" required="required"></input>
-          <button id="edit-password" class="btn1 self-end" type="submit" disabled>Update password</button>
+          <div class="flex w-full h-fit items-center justify-end">
+            <span id="message"
+              class="transition-all duration-100 px-4 py-2 text-green-600 h-max text-sm"
+              style="opacity: 0">Password updated.</span>
+            <button id="edit-password" class="btn1 h-fit" type="submit" disabled>Update password</button>
+
+          </div>
         </div>
 
       </form>
@@ -36,14 +42,12 @@
   </section>
 
   <form
-    class="w-fit border dark:border-stone-700 dark:hover:bg-stone-800 dark:active:bg-stone-800 border-stone-300 hover:bg-stone-100 active:bg-stone-100 rounded-lg transition-all duration-200 mt-6"
+    class="w-fit border dark:border-stone-800 dark:hover:bg-stone-900 dark:active:bg-stone-900 border-stone-300 hover:bg-stone-100 active:bg-stone-100 rounded-lg transition-all duration-200 mt-10"
     action="/deleteAccount" method="post">
 
-    <button class="dark:text-red-500 dark:hover:text-red-500 text-red-600 px-2 py-1 cursor-pointer" type="submit">Delete
+    <button class="dark:text-red-500 text-red-700 px-4 py-1 cursor-pointer" type="submit">Delete
       account</button>
   </form>
 
-  <span id="message"
-    class="transition-all duration-100 absolute top-[15%] dark:bg-stone-900 bg-white px-4 py-2 rounded-lg border dark:border-stone-800 border-stone-300 shadow-sm"
-    style="opacity: 0"></span>
+
 </div>

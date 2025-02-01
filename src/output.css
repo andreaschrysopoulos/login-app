@@ -560,6 +560,9 @@
   .hidden {
     display: none;
   }
+  .h-dvh {
+    height: 100dvh;
+  }
   .h-fit {
     height: fit-content;
   }
@@ -749,6 +752,11 @@
   .dark\:border-stone-800 {
     @media (prefers-color-scheme: dark) {
       border-color: var(--color-stone-800);
+    }
+  }
+  .dark\:bg-stone-800 {
+    @media (prefers-color-scheme: dark) {
+      background-color: var(--color-stone-800);
     }
   }
   .dark\:bg-stone-900 {

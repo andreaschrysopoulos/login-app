@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 .formContainer {
-  @apply flex flex-col w-[400px] h-fit m-5 p-5 bg-stone-100 dark:bg-stone-950 rounded-lg border border-stone-200 dark:border-stone-800;
+  @apply flex flex-col max-w-[400px] min-w-[300px] w-full h-fit p-5 bg-stone-100 dark:bg-stone-950 rounded-lg border border-stone-200 dark:border-stone-800;
 }
 .formHeader {
   @apply mb-3 text-3xl text-center font-bold dark:text-stone-200;

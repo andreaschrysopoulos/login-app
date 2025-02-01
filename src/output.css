@@ -566,9 +566,6 @@
   .h-fit {
     height: fit-content;
   }
-  .h-screen {
-    height: 100vh;
-  }
   .w-fit {
     width: fit-content;
   }
@@ -744,6 +741,16 @@
       }
     }
   }
+  .active\:bg-stone-100 {
+    &:active {
+      background-color: var(--color-stone-100);
+    }
+  }
+  .active\:bg-stone-200 {
+    &:active {
+      background-color: var(--color-stone-200);
+    }
+  }
   .dark\:border-stone-700 {
     @media (prefers-color-scheme: dark) {
       border-color: var(--color-stone-700);
@@ -752,11 +759,6 @@
   .dark\:border-stone-800 {
     @media (prefers-color-scheme: dark) {
       border-color: var(--color-stone-800);
-    }
-  }
-  .dark\:bg-stone-800 {
-    @media (prefers-color-scheme: dark) {
-      background-color: var(--color-stone-800);
     }
   }
   .dark\:bg-stone-900 {
@@ -794,6 +796,13 @@
         @media (hover: hover) {
           color: var(--color-red-500);
         }
+      }
+    }
+  }
+  .dark\:active\:bg-stone-800 {
+    @media (prefers-color-scheme: dark) {
+      &:active {
+        background-color: var(--color-stone-800);
       }
     }
   }
@@ -891,6 +900,12 @@
       color: var(--color-white);
     }
   }
+  &:active {
+    background-color: var(--color-blue-600);
+  }
+  &:active {
+    color: var(--color-white);
+  }
   &:disabled {
     background-color: var(--color-stone-400);
   }
@@ -912,6 +927,16 @@
       @media (prefers-color-scheme: dark) {
         color: var(--color-white);
       }
+    }
+  }
+  @media (prefers-color-scheme: dark) {
+    &:active {
+      background-color: var(--color-blue-700);
+    }
+  }
+  @media (prefers-color-scheme: dark) {
+    &:active {
+      color: var(--color-white);
     }
   }
   @media (prefers-color-scheme: dark) {
@@ -1018,6 +1043,12 @@
       color: var(--color-white);
     }
   }
+  &:active {
+    background-color: var(--color-blue-600);
+  }
+  &:active {
+    color: var(--color-white);
+  }
   &:disabled {
     cursor: default;
   }
@@ -1040,11 +1071,21 @@
       }
     }
   }
-  &:hover {
-    @media (hover: hover) {
-      @media (prefers-color-scheme: dark) {
+  @media (prefers-color-scheme: dark) {
+    &:hover {
+      @media (hover: hover) {
         color: var(--color-white);
       }
+    }
+  }
+  @media (prefers-color-scheme: dark) {
+    &:active {
+      background-color: var(--color-blue-700);
+    }
+  }
+  @media (prefers-color-scheme: dark) {
+    &:active {
+      color: var(--color-white);
     }
   }
   @media (prefers-color-scheme: dark) {

@@ -29,7 +29,8 @@ document.querySelector('#login-form').addEventListener('submit', async (e) => {
           message.innerText = "Authentication Successful";
           message.style.color = 'rgb(40, 184, 0)';
           message.style.display = 'block';
-          button.style.display = "none";
+          button.style.disabled = "true";
+          button.disabled = true;
           redirect();
         } else if(text === 'credentials') {
           message.innerText = "Incorrect credentials.";

@@ -1,9 +1,9 @@
 <script src="signedIn.js" defer></script>
 
-<div class="flex flex-auto justify-center p-4 gap-3 min-h-0">
+<div class="flex flex-auto justify-center items-center px-4 min-h-0">
 
   <section id="sidebar"
-    class="w-fit min-w-fit flex flex-col bg-stone-100 dark:bg-stone-900 rounded-lg border border-stone-200 dark:border-stone-800 overflow-y-auto max-h-[500px]">
+    class="w-fit min-w-fit h-full max-h-[500px] overflow-y-auto flex flex-col bg-stone-100 dark:bg-stone-900 rounded-tl-lg rounded-bl-lg border-l border-b border-t border-stone-200 dark:border-stone-800  ">
 
     <ul class="flex flex-col">
       <li id="menu-photo" class="w-full py-2 px-3 dark:text-white cursor-pointer rounded-t-md">Photo</li>
@@ -12,7 +12,7 @@
     </ul>
   </section>
 
-  <section id="settings-container" class="formContainer1 h-full overflow-y-auto">
+  <section id="settings-container" class="max-h-[500px] h-full w-full min-w-[330px] max-w-[500px] flex flex-col px-5 py-4 bg-stone-100 dark:bg-stone-900 rounded-tr-lg rounded-br-lg border border-stone-200 dark:border-stone-800  overflow-y-auto">
     <div id="section-photo" class="flex flex-col" style="display: none">
       <h2 class="formHeader">Photo</h2>
       <p class="text-sm text-center dark:text-stone-300 mt-2 mb-5">Update your profile photo.</p>

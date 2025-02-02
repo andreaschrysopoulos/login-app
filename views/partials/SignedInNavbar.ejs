@@ -10,22 +10,36 @@
     class="rounded-full hover:cursor-pointer border border-stone-300 dark:border-stone-800">
 
   <div id="popupMenu"
-    class="hidden flex transition-all duration-100 flex-col bg-stone-100 dark:bg-stone-900 dark:text-stone-100 border dark:border-stone-800 border-stone-200 p-2 absolute top-9 right-2 m-2 z-50 rounded-lg">
+    class="hidden transition-all duration-100 flex-col bg-stone-100 dark:bg-stone-900 dark:text-stone-100 border dark:border-stone-800 border-stone-200 p-2 absolute top-9 right-2 m-2 z-50 rounded-lg">
 
     <ul class="flex flex-col">
 
-      <li class="hover:bg-stone-200 dark:hover:bg-stone-800 active:bg-stone-200 dark:active:bg-stone-800 rounded-lg p-1 px-3 text-end">
-        <a href="/" class="">My account</a>
+      <li>
+        <a href="/">
+          <div
+            class="w-full hover:bg-stone-200 dark:hover:bg-stone-800 active:bg-stone-200 dark:active:bg-stone-800 rounded-lg p-1 px-3 text-end">
+            Home</div>
+        </a>
+
       </li>
 
-      <li class="hover:bg-stone-200 dark:hover:bg-stone-800 active:bg-stone-200 dark:active:bg-stone-800 rounded-lg p-1 px-3 text-end">
-        <a href="/settings">Account Settings</a>
+      <li>
+        <a href="/settings">
+          <div
+            class="w-full hover:bg-stone-200 dark:hover:bg-stone-800 active:bg-stone-200 dark:active:bg-stone-800 rounded-lg p-1 px-3 text-end">
+            Preferences</div>
+        </a>
       </li>
 
-      <li class="hover:bg-stone-200 dark:hover:bg-stone-800 active:bg-stone-200 dark:active:bg-stone-800 rounded-lg p-1 px-3 text-end">
+      <li>
         <form class="" action="/logout" method="post">
-          <button class="cursor-pointer" type="submit">Sign out</button>
+          <button
+            class="w-full hover:bg-stone-200 dark:hover:bg-stone-800 active:bg-stone-200 dark:active:bg-stone-800 rounded-lg p-1 px-3 text-end cursor-pointer"
+            type="submit">
+            Sign out
+          </button>
         </form>
+
       </li>
 
     </ul>

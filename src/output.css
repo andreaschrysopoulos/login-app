@@ -542,8 +542,14 @@
   .m-2 {
     margin: calc(var(--spacing) * 2);
   }
-  .mt-10 {
-    margin-top: calc(var(--spacing) * 10);
+  .mt-2 {
+    margin-top: calc(var(--spacing) * 2);
+  }
+  .mt-5 {
+    margin-top: calc(var(--spacing) * 5);
+  }
+  .mb-5 {
+    margin-bottom: calc(var(--spacing) * 5);
   }
   .block {
     display: block;
@@ -560,8 +566,17 @@
   .h-fit {
     height: fit-content;
   }
+  .h-full {
+    height: 100%;
+  }
   .h-max {
     height: max-content;
+  }
+  .max-h-\[500px\] {
+    max-height: 500px;
+  }
+  .min-h-0 {
+    min-height: calc(var(--spacing) * 0);
   }
   .w-fit {
     width: fit-content;
@@ -581,6 +596,9 @@
   .flex-auto {
     flex: auto;
   }
+  .cursor-default {
+    cursor: default;
+  }
   .cursor-pointer {
     cursor: pointer;
   }
@@ -596,23 +614,27 @@
   .justify-end {
     justify-content: flex-end;
   }
+  .gap-3 {
+    gap: calc(var(--spacing) * 3);
+  }
   .gap-5 {
     gap: calc(var(--spacing) * 5);
-  }
-  .gap-6 {
-    gap: calc(var(--spacing) * 6);
   }
   .self-center {
     align-self: center;
   }
-  .self-end {
-    align-self: flex-end;
+  .overflow-y-auto {
+    overflow-y: auto;
   }
   .rounded-full {
     border-radius: calc(infinity * 1px);
   }
   .rounded-lg {
     border-radius: var(--radius-lg);
+  }
+  .rounded-t-md {
+    border-top-left-radius: var(--radius-md);
+    border-top-right-radius: var(--radius-md);
   }
   .border {
     border-style: var(--tw-border-style);
@@ -626,6 +648,9 @@
   }
   .bg-stone-100 {
     background-color: var(--color-stone-100);
+  }
+  .bg-stone-200 {
+    background-color: var(--color-stone-200);
   }
   .bg-white {
     background-color: var(--color-white);
@@ -659,6 +684,9 @@
   }
   .py-2 {
     padding-block: calc(var(--spacing) * 2);
+  }
+  .pr-3 {
+    padding-right: calc(var(--spacing) * 3);
   }
   .text-center {
     text-align: center;
@@ -754,6 +782,11 @@
       border-color: var(--color-stone-800);
     }
   }
+  .dark\:bg-stone-800 {
+    @media (prefers-color-scheme: dark) {
+      background-color: var(--color-stone-800);
+    }
+  }
   .dark\:bg-stone-900 {
     @media (prefers-color-scheme: dark) {
       background-color: var(--color-stone-900);
@@ -762,11 +795,6 @@
   .dark\:bg-stone-950 {
     @media (prefers-color-scheme: dark) {
       background-color: var(--color-stone-950);
-    }
-  }
-  .dark\:text-green-600 {
-    @media (prefers-color-scheme: dark) {
-      color: var(--color-green-600);
     }
   }
   .dark\:text-red-500 {
@@ -787,6 +815,11 @@
   .dark\:text-stone-300 {
     @media (prefers-color-scheme: dark) {
       color: var(--color-stone-300);
+    }
+  }
+  .dark\:text-white {
+    @media (prefers-color-scheme: dark) {
+      color: var(--color-white);
     }
   }
   .dark\:hover\:bg-stone-800 {
@@ -834,7 +867,8 @@
   border-width: 1px;
   border-color: var(--color-stone-200);
   background-color: var(--color-stone-100);
-  padding: calc(var(--spacing) * 5);
+  padding-inline: calc(var(--spacing) * 5);
+  padding-block: calc(var(--spacing) * 4);
   @media (prefers-color-scheme: dark) {
     border-color: var(--color-stone-800);
   }
@@ -843,7 +877,6 @@
   }
 }
 .formHeader {
-  margin-bottom: calc(var(--spacing) * 3);
   text-align: center;
   font-size: var(--text-3xl);
   line-height: var(--tw-leading, var(--text-3xl--line-height));
@@ -973,16 +1006,18 @@
 }
 .formContainer1 {
   display: flex;
+  max-height: 500px;
   width: 100%;
   max-width: 500px;
-  min-width: 300px;
+  min-width: 330px;
   flex-direction: column;
   border-radius: var(--radius-lg);
   border-style: var(--tw-border-style);
   border-width: 1px;
   border-color: var(--color-stone-200);
   background-color: var(--color-stone-100);
-  padding: calc(var(--spacing) * 5);
+  padding-inline: calc(var(--spacing) * 5);
+  padding-block: calc(var(--spacing) * 4);
   @media (prefers-color-scheme: dark) {
     border-color: var(--color-stone-800);
   }
@@ -1038,7 +1073,7 @@
   border-color: var(--color-stone-200);
   background-color: var(--color-blue-500);
   padding-inline: calc(var(--spacing) * 3);
-  padding-block: calc(var(--spacing) * 1.5);
+  padding-block: calc(var(--spacing) * 1);
   font-size: var(--text-sm);
   line-height: var(--tw-leading, var(--text-sm--line-height));
   color: var(--color-stone-50);

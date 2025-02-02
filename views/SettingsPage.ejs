@@ -1,17 +1,38 @@
 <script src="signedIn.js" defer></script>
 
-<div class="flex flex-col justify-center flex-auto items-center p-4">
+<div class="flex flex-auto justify-center p-4 gap-3 min-h-0">
 
-  <section class="formContainer1">
-    <h2 class="formHeader">Settings</h2>
+  <section id="sidebar"
+    class="w-fit min-w-fit flex flex-col bg-stone-100 dark:bg-stone-900 rounded-lg border border-stone-200 dark:border-stone-800 overflow-y-auto max-h-[500px]">
+
+    <ul class="flex flex-col">
+      <li id="menu-photo" class="w-full py-2 px-3 dark:text-white cursor-pointer rounded-t-md">Photo</li>
+      <li id="menu-email" class="w-full py-2 px-3 dark:text-white cursor-pointer">Email & Password</li>
+      <li id="menu-delete" class="w-full py-2 px-3 dark:text-white cursor-pointer">Delete Account</li>
+    </ul>
+  </section>
+
+  <section id="settings-container" class="formContainer1 h-full overflow-y-auto">
+    <div id="section-photo" class="flex flex-col" style="display: none">
+      <h2 class="formHeader">Photo</h2>
+      <p class="text-sm text-center dark:text-stone-300 mt-2 mb-5">Update your profile photo.</p>
+      
+    </div>
 
 
-    <div class="flex flex-col gap-6">
+    <div id="section-email" class="flex flex-col" style="display: none">
+      <h2 class="formHeader">Email & Password</h2>
+      <p class="text-sm text-center dark:text-stone-300 mt-2 mb-5">Update your email or password.</p>
+
+
       <form id="form-email" action="/editEmail" method="post" class="flex flex-col">
         <label for="email" class="lblInput1 ">Email:</label>
         <input id="email" type="email" name="email" class="userEmail textInput1" required></input>
-        <button id="edit-email" class="btn1 self-end" type="submit" disabled>Update email</button>
-
+        <div class="flex w-full h-fit items-center justify-end">
+          <span id="message-email" class="transition-all duration-100 pr-3 py-2 text-green-600 h-max text-sm cursor-default"
+            style="opacity: 0">Email updated</span>
+          <button id="edit-email" class="btn1" type="submit" disabled>Update email</button>
+        </div>
       </form>
 
       <form id="form-pass" action="/editPass" method="post" class="flex flex-col">
@@ -27,11 +48,9 @@
           <input id="confirmNewPassword" name="confirmNewPassword" type="password" class="textInput1  "
             autocomplete="new-password" required="required"></input>
           <div class="flex w-full h-fit items-center justify-end">
-            <span id="message"
-              class="transition-all duration-100 px-4 py-2 text-green-600 h-max text-sm"
-              style="opacity: 0">Password updated.</span>
+            <span id="message-password" class="transition-all duration-100 pr-3 py-2 text-green-600 h-max text-sm cursor-default"
+              style="opacity: 0">Password updated</span>
             <button id="edit-password" class="btn1 h-fit" type="submit" disabled>Update password</button>
-
           </div>
         </div>
 
@@ -39,15 +58,25 @@
 
     </div>
 
+    <div id="section-delete" class="flex flex-col" style="display: none">
+      <h2 class="formHeader">Delete Account</h2>
+      <p class="text-sm text-center dark:text-stone-300 mt-2 mb-5">Permenantly delete your account.</p>
+
+
+      <form
+        class="flex justify-center w-full mt-5"
+        action="/deleteAccount" method="post">
+
+        <button class="w-fit border dark:border-stone-800 dark:hover:bg-stone-900 dark:active:bg-stone-900 border-stone-300 hover:bg-stone-100 active:bg-stone-100 rounded-lg transition-all duration-200 dark:text-red-500 text-red-700 px-4 py-1 cursor-pointer" type="submit">Delete
+          account</button>
+      </form>
+    </div>
+
   </section>
 
-  <form
-    class="w-fit border dark:border-stone-800 dark:hover:bg-stone-900 dark:active:bg-stone-900 border-stone-300 hover:bg-stone-100 active:bg-stone-100 rounded-lg transition-all duration-200 mt-10"
-    action="/deleteAccount" method="post">
 
-    <button class="dark:text-red-500 text-red-700 px-4 py-1 cursor-pointer" type="submit">Delete
-      account</button>
-  </form>
+
+
 
 
 </div>

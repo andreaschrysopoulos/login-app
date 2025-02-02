@@ -26,20 +26,15 @@ document.querySelector('#login-form').addEventListener('submit', async (e) => {
     } else {
       response.text().then(text => {
         if (text === 'OK') {
-          message.innerText = "Authentication Successful";
-          message.style.color = 'rgb(40, 184, 0)';
-          message.style.display = 'block';
           button.style.disabled = "true";
           button.disabled = true;
           redirect();
         } else if(text === 'credentials') {
           message.innerText = "Incorrect credentials.";
           message.style.color = 'rgb(220, 0, 0)';
-          message.style.display = 'block';
         } else {
           message.innerText = "Unknown error.";
           message.style.color = 'rgb(220, 0, 0)';
-          message.style.display = 'block';
         }
       }
       )

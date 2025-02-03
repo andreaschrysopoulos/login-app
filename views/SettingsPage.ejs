@@ -1,82 +1,83 @@
 <script src="signedIn.js" defer></script>
+<script src="settings.js" defer></script>
 
-<div class="flex flex-auto justify-center items-center px-4 min-h-0">
+<div class="flex flex-auto justify-center items-center min-h-0 overflow-x-auto">
 
-  <section id="sidebar"
-    class="w-fit min-w-fit h-full max-h-[500px] overflow-y-auto flex flex-col bg-stone-100 dark:bg-stone-900 rounded-tl-lg rounded-bl-lg border-l border-b border-t border-stone-200 dark:border-stone-800  ">
+  <div id="sidebar" class="min-w-max h-full pl-4 max-h-[450px]">
+    <section
+      class="overflow-y-auto h-full bg-stone-100 dark:bg-stone-900 rounded-tl-lg rounded-bl-lg border-l border-b border-t border-stone-200 dark:border-stone-800">
+      <ul class="flex flex-col">
+        <li id="menu-photo" class="w-full py-2 px-3 dark:text-white cursor-pointer rounded-tl-md">Photo</li>
+        <li id="menu-email" class="w-full py-2 px-3 dark:text-white cursor-pointer">Email & Password</li>
+        <li id="menu-delete" class="w-full py-2 px-3 dark:text-white cursor-pointer">Delete Account</li>
+      </ul>
+    </section>
+  </div>
 
-    <ul class="flex flex-col">
-      <li id="menu-photo" class="w-full py-2 px-3 dark:text-white cursor-pointer rounded-t-md">Photo</li>
-      <li id="menu-email" class="w-full py-2 px-3 dark:text-white cursor-pointer">Email & Password</li>
-      <li id="menu-delete" class="w-full py-2 px-3 dark:text-white cursor-pointer">Delete Account</li>
-    </ul>
-  </section>
+  <div id="settings-container" class="max-h-[450px] h-full w-full min-w-[330px] max-w-[500px] pr-4">
+    <section
+      class="h-full flex flex-col px-5 py-4 bg-stone-100 dark:bg-stone-900 rounded-tr-lg rounded-br-lg border border-stone-200 dark:border-stone-800  overflow-y-auto">
+      <div id="section-photo" class="flex flex-col items-center" style="display: none">
+        <h2 class="text-3xl font-bold dark:text-stone-200">Photo</h2>
+        <p class="text-sm dark:text-stone-300 mt-2 mb-5">Update your profile photo.</p>
 
-  <section id="settings-container" class="max-h-[500px] h-full w-full min-w-[330px] max-w-[500px] flex flex-col px-5 py-4 bg-stone-100 dark:bg-stone-900 rounded-tr-lg rounded-br-lg border border-stone-200 dark:border-stone-800  overflow-y-auto">
-    <div id="section-photo" class="flex flex-col" style="display: none">
-      <h2 class="formHeader">Photo</h2>
-      <p class="text-sm text-center dark:text-stone-300 mt-2 mb-5">Update your profile photo.</p>
-      
-    </div>
+        <input id="selectedPhoto" type="file" accept="image/*" style="display: none;">
+        <img id="photoPreview" src="generic.jpg"
+          class="cursor-pointer mt-4 rounded-full border border-stone-300 w-36 h-36" title="Update photo">
+      </div>
 
-
-    <div id="section-email" class="flex flex-col" style="display: none">
-      <h2 class="formHeader">Email & Password</h2>
-      <p class="text-sm text-center dark:text-stone-300 mt-2 mb-5">Update your email or password.</p>
-
-
-      <form id="form-email" action="/editEmail" method="post" class="flex flex-col">
-        <label for="email" class="lblInput1 ">Email:</label>
-        <input id="email" type="email" name="email" class="userEmail textInput1" required></input>
-        <div class="flex w-full h-fit items-center justify-end">
-          <span id="message-email" class="transition-all duration-100 pr-3 py-2 text-green-600 h-max text-sm cursor-default"
-            style="opacity: 0">Email updated</span>
-          <button id="edit-email" class="btn1" type="submit" disabled>Update email</button>
-        </div>
-      </form>
-
-      <form id="form-pass" action="/editPass" method="post" class="flex flex-col">
-
-        <div class="flex flex-col">
-          <label for="newPassword" class="lblInput1 ">New Password:</label>
-          <input id="newPassword" name="newPassword" type="password" class="textInput1" autocomplete="off"
-            required="required"></input>
-        </div>
-
-        <div class="flex flex-col">
-          <label for="confirmNewPassword" class="lblInput1 ">Confirm New Password:</label>
-          <input id="confirmNewPassword" name="confirmNewPassword" type="password" class="textInput1  "
-            autocomplete="new-password" required="required"></input>
+      <div id="section-email" class="flex flex-col" style="display: none">
+        <h2 class="text-3xl font-bold dark:text-stone-200 text-center">Email & Password</h2>
+        <p class="text-sm text-center dark:text-stone-300 mt-2 mb-5">Update your email or password.</p>
+        <form id="form-email" action="/editEmail" method="post" class="flex flex-col">
+          <label for="email" class="mb-2 text-stone-700 dark:text-stone-300 ">Email:</label>
+          <input id="email" type="email" name="email"
+            class="userEmail text-sm px-3 py-1.5 mb-3 focus:outline-blue-300 dark:focus:outline-blue-900 focus:outline-2 dark:bg-stone-800 bg-stone-200 dark:text-stone-100 border border-stone-300 dark:border-stone-700 rounded-lg"
+            required></input>
           <div class="flex w-full h-fit items-center justify-end">
-            <span id="message-password" class="transition-all duration-100 pr-3 py-2 text-green-600 h-max text-sm cursor-default"
-              style="opacity: 0">Password updated</span>
-            <button id="edit-password" class="btn1 h-fit" type="submit" disabled>Update password</button>
+            <span id="message-email"
+              class="transition-all duration-100 pr-3 py-2 text-green-600 h-max text-sm cursor-default"
+              style="opacity: 0">Email updated</span>
+            <button id="edit-email"
+              class="text-sm dark:disabled:bg-stone-700 disabled:bg-stone-400  disabled:cursor-default transition-colors duration-150 bg-blue-500 hover:bg-blue-600 active:bg-blue-600 text-stone-50 hover:text-white active:text-white dark:bg-blue-600 dark:hover:bg-blue-700 dark:active:bg-blue-700 dark:text-stone-100 dark:hover:text-white dark:active:text-white py-1 px-3 rounded-lg cursor-pointer border dark:border-stone-800 border-stone-200"
+              type="submit" disabled>Update email</button>
           </div>
-        </div>
-
-      </form>
-
-    </div>
-
-    <div id="section-delete" class="flex flex-col" style="display: none">
-      <h2 class="formHeader">Delete Account</h2>
-      <p class="text-sm text-center dark:text-stone-300 mt-2 mb-5">Permenantly delete your account.</p>
-
-
-      <form
-        class="flex justify-center w-full mt-5"
-        action="/deleteAccount" method="post">
-
-        <button class="w-fit border dark:border-stone-800 dark:hover:bg-stone-900 dark:active:bg-stone-900 border-stone-300 hover:bg-stone-100 active:bg-stone-100 rounded-lg transition-all duration-200 dark:text-red-500 text-red-700 px-4 py-1 cursor-pointer" type="submit">Delete
-          account</button>
-      </form>
-    </div>
-
-  </section>
-
-
-
-
-
+        </form>
+        <form id="form-pass" action="/editPass" method="post" class="flex flex-col">
+          <div class="flex flex-col">
+            <label for="newPassword" class="mb-2 text-stone-700 dark:text-stone-300 ">New Password:</label>
+            <input id="newPassword" name="newPassword" type="password"
+              class="text-sm px-3 py-1.5 mb-3 focus:outline-blue-300 dark:focus:outline-blue-900 focus:outline-2 dark:bg-stone-800 bg-stone-200 dark:text-stone-100 border border-stone-300 dark:border-stone-700 rounded-lg"
+              autocomplete="off" required="required"></input>
+          </div>
+          <div class="flex flex-col">
+            <label for="confirmNewPassword" class="mb-2 text-stone-700 dark:text-stone-300 ">Confirm New
+              Password:</label>
+            <input id="confirmNewPassword" name="confirmNewPassword" type="password"
+              class="text-sm px-3 py-1.5 mb-3 focus:outline-blue-300 dark:focus:outline-blue-900 focus:outline-2 dark:bg-stone-800 bg-stone-200 dark:text-stone-100 border border-stone-300 dark:border-stone-700 rounded-lg"
+              autocomplete="new-password" required="required"></input>
+            <div class="flex w-full h-fit items-center justify-end">
+              <span id="message-password"
+                class="transition-all duration-100 pr-3 py-2 text-green-600 h-max text-sm cursor-default"
+                style="opacity: 0">Password updated</span>
+              <button id="edit-password"
+                class="text-sm dark:disabled:bg-stone-700 disabled:bg-stone-400  disabled:cursor-default transition-colors duration-150 bg-blue-500 hover:bg-blue-600 active:bg-blue-600 text-stone-50 hover:text-white active:text-white dark:bg-blue-600 dark:hover:bg-blue-700 dark:active:bg-blue-700 dark:text-stone-100 dark:hover:text-white dark:active:text-white py-1 px-3 rounded-lg cursor-pointer border dark:border-stone-800 border-stone-200 h-fit"
+                type="submit" disabled>Update password</button>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div id="section-delete" class="flex flex-col" style="display: none">
+        <h2 class="text-3xl font-bold dark:text-stone-200 text-center">Delete Account</h2>
+        <p class="text-sm text-center dark:text-stone-300 mt-2 mb-5">Permenantly delete your account.</p>
+        <form class="flex justify-center w-full mt-5" action="/deleteAccount" method="post">
+          <button
+            class="w-fit border dark:border-stone-800 dark:hover:bg-stone-900 dark:active:bg-stone-900 border-stone-300 hover:bg-stone-100 active:bg-stone-100 rounded-lg transition-all duration-200 dark:text-red-500 text-red-700 px-4 py-1 cursor-pointer"
+            type="submit">Delete
+            account</button>
+        </form>
+      </div>
+    </section>
+  </div>
 
 </div>

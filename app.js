@@ -1,6 +1,7 @@
 const express = require('express');
 const session = require('express-session');
 const expressLayout = require('express-ejs-layouts');
+const fileUpload = require('express-fileupload');
 
 const { Pool } = require('pg');
 require('dotenv').config();
@@ -9,15 +10,17 @@ const app = express();
 const PORT = 3120;
 
 app.use(express.static('src'));
+app.use(fileUpload());
 app.use(express.json());
 app.use(expressLayout);
+
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 app.set('layout', path.join(__dirname, 'views/layouts/Layout.ejs'));
 
 // PostgreSQL connection setup
-const pool = new Pool({
+const sql = new Pool({
   host: process.env.DB_HOST,
   port: process.env.DB_PORT,
   user: process.env.DB_USER,
@@ -27,28 +30,28 @@ const pool = new Pool({
 
 // Helper functions
 const registerUser = async (email, passwordHash) => {
-  await pool.query(
+  await sql.query(
     'INSERT INTO users (email, password_hash) VALUES ($1, $2)',
     [email, passwordHash]
   );
 };
 
 const editEmail = async (oldEmail, newEmail) => {
-  await pool.query(
+  await sql.query(
     'UPDATE users SET email = $1 WHERE email = $2',
     [newEmail, oldEmail]
   );
 }
 
 const editPassword = async (user, passwordHash) => {
-  await pool.query(
+  await sql.query(
     'UPDATE users SET password_hash = $1 WHERE email = $2',
     [passwordHash, user]
   );
 }
 
 const findUserByEmail = async (email) => {
-  const result = await pool.query(
+  const result = await sql.query(
     'SELECT * FROM users WHERE email = $1',
     [email]
   );
@@ -56,7 +59,7 @@ const findUserByEmail = async (email) => {
 };
 
 const deleteUser = async (email) => {
-  await pool.query(
+  await sql.query(
     'DELETE FROM users WHERE email = $1',
     [email]
   );
@@ -135,7 +138,7 @@ app.post('/logout', (req, res) => {
       console.log(err);
       res.status(500).send('Could not log out.');
     } else {
-      res.redirect('/');
+      res.send('<script>localStorage.clear(); window.location.href = "/";</script>');
     }
   });
 });
@@ -218,6 +221,28 @@ app.post('/editPass', async (req, res) => {
 
 });
 
+app.post('/updatePhoto', async (req, res) => {
+
+  let image;
+  let uploadPath;
+
+  if (!req.files || Object.keys(req.files).length === 0) {
+    return res.status(400).send('No files were uploaded.');
+  }
+
+  // The name of the input field (i.e. "image") is used to retrieve the uploaded file
+  image = req.files.image;
+  uploadPath = __dirname + '/uploads/' + image.name;
+
+  // Use the mv() method to place the file somewhere on your server
+  image.mv(uploadPath, function(err) {
+    if (err)
+      return res.status(500).send(err);
+
+    res.send('ok');
+  });
+
+});
 
 // Start Server
 app.listen(PORT, () => {

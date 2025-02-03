@@ -1,33 +1,43 @@
 <div class="flex flex-1 items-center justify-center">
-  <section class="formContainer">
+  <section
+    class="flex flex-col max-w-[400px] min-w-[300px] w-full h-fit px-5 py-4 bg-stone-100 dark:bg-stone-900 rounded-lg border border-stone-200 dark:border-stone-800">
 
     <div class="mb-5">
-      <h2 class="formHeader">Create new account</h2>
+      <h2 class="text-3xl text-center font-bold dark:text-stone-200">Create new account</h2>
     </div>
 
     <form id="create-account-form" action="" class="flex flex-col">
 
       <!-- Email -->
-      <label class="lblInput" for="email">Email</label>
-      <input class="textInput" type="email" id="email" name="email" autocomplete="email" required>
+      <label class="mb-2 text-stone-700 dark:text-stone-300" for="email">Email</label>
+      <input
+        class="text-sm px-3 py-1.5 mb-3 focus:outline-blue-300 dark:focus:outline-blue-900 focus:outline-2 dark:text-stone-100 border border-stone-300 dark:border-stone-700 rounded-lg dark:bg-stone-800 bg-stone-200"
+        type="email" id="email" name="email" autocomplete="email" required>
 
       <!-- Password -->
-      <label class="lblInput" for="password">Password</label>
-      <input class="textInput" type="password" id="password" name="password" autocomplete="current-password" required>
+      <label class="mb-2 text-stone-700 dark:text-stone-300" for="password">Password</label>
+      <input
+        class="text-sm px-3 py-1.5 mb-3 focus:outline-blue-300 dark:focus:outline-blue-900 focus:outline-2 dark:text-stone-100 border border-stone-300 dark:border-stone-700 rounded-lg dark:bg-stone-800 bg-stone-200"
+        type="password" id="password" name="password" autocomplete="current-password" required>
 
       <!-- Repeat Password -->
-      <label class="lblInput" for="rpassword">Repeat Password</label>
-      <input class="textInput" type="password" id="rpassword" name="rpassword" autocomplete="current-password" required>
+      <label class="mb-2 text-stone-700 dark:text-stone-300" for="rpassword">Repeat Password</label>
+      <input
+        class="text-sm px-3 py-1.5 mb-3 focus:outline-blue-300 dark:focus:outline-blue-900 focus:outline-2 dark:text-stone-100 border border-stone-300 dark:border-stone-700 rounded-lg dark:bg-stone-800 bg-stone-200"
+        type="password" id="rpassword" name="rpassword" autocomplete="current-password" required>
 
       <!-- Message -->
       <div id="message" class="self-center"></div>
 
       <!-- Submit Button -->
-      <button class="transition-colors duration-150 disabled:bg-stone-400 dark:disabled:bg-stone-600 bg-blue-500 hover:bg-blue-600 active:bg-blue-600 text-stone-50 hover:text-white active:text-white dark:bg-blue-600 dark:hover:bg-blue-700 dark:active:bg-blue-700 dark:text-stone-100 hover:dark:text-white dark:active:text-white rounded-lg cursor-pointer mt-6 py-1.5" type="submit">Create account</button>
+      <button
+        class="transition-colors duration-150 disabled:bg-stone-400 dark:disabled:bg-stone-600 bg-blue-500 hover:bg-blue-600 active:bg-blue-600 text-stone-50 hover:text-white active:text-white dark:bg-blue-600 dark:hover:bg-blue-700 dark:active:bg-blue-700 dark:text-stone-100 hover:dark:text-white dark:active:text-white rounded-lg cursor-pointer mt-6 py-1.5"
+        type="submit">Create account</button>
     </form>
 
     <!-- Already have an account? Log in -->
-    <div class="formExtra">Already have an account? <a class="hover:underline" href="/">Sign in</a></div>
+    <div class="w-fit mt-4 text-stone-700 dark:text-stone-300 self-center text-sm">Already have an account? <a
+        class="hover:underline" href="/">Sign in</a></div>
 
   </section>
 </div>

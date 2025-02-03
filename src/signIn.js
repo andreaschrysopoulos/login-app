@@ -8,7 +8,7 @@ document.querySelector('#login-form').addEventListener('submit', async (e) => {
     return;
   }
 
-  const email = document.getElementById('email').value.trim();
+  const email = document.getElementById('eemail').value.trim();
   const password = document.getElementById('password').value.trim();
   const message = document.getElementById('message');
   const button = document.querySelector('button');
@@ -18,7 +18,7 @@ document.querySelector('#login-form').addEventListener('submit', async (e) => {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email, password })
-    })
+    });
 
     if (!response.ok) {
       const errorData = await response.json();

@@ -2,12 +2,15 @@ const express = require('express');
 const session = require('express-session');
 const expressLayout = require('express-ejs-layouts');
 const fileUpload = require('express-fileupload');
+const fs = require('fs');
+
 
 const { Pool } = require('pg');
 require('dotenv').config();
 const path = require('path');
 const app = express();
 const PORT = 3120;
+const userDataLocation = __dirname + '/userData/';
 
 app.use(express.static('src'));
 app.use(fileUpload());
@@ -18,6 +21,8 @@ app.use(expressLayout);
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 app.set('layout', path.join(__dirname, 'views/layouts/Layout.ejs'));
+
+const debugTime = 1;
 
 // PostgreSQL connection setup
 const sql = new Pool({
@@ -58,6 +63,7 @@ const findUserByEmail = async (email) => {
   return result.rows[0];
 };
 
+
 const deleteUser = async (email) => {
   await sql.query(
     'DELETE FROM users WHERE email = $1',
@@ -73,7 +79,6 @@ app.use(session({
   saveUninitialized: true,
   cookie: { secure: true } // Set to true if using HTTPS
 }));
-
 
 // HOME Route
 app.get('/', (req, res) => {
@@ -108,7 +113,6 @@ app.get('/data', (req, res) => {
     res.send("error");
   }
 });
-
 
 // POST /login
 app.post('/login', async (req, res) => {
@@ -161,7 +165,6 @@ app.post('/createAccount', async (req, res) => {
     }
   }
 });
-
 
 app.post('/deleteAccount', async (req, res) => {
   const user = req.session.user;
@@ -221,30 +224,157 @@ app.post('/editPass', async (req, res) => {
 
 });
 
-app.post('/updatePhoto', async (req, res) => {
 
-  let image;
-  let uploadPath;
+const getPhoto = async (email) => {
 
-  if (!req.files || Object.keys(req.files).length === 0) {
-    return res.status(400).send('No files were uploaded.');
+  const sqlResult = await sql.query(
+    'SELECT profile_photo_url FROM users WHERE email = $1',
+    [email]
+  );
+
+  let imagePath = sqlResult.rows[0].profile_photo_url;
+
+  if (imagePath === '')
+    imagePath = '/Users/andreas/git/login-app/src/generic.jpg';
+
+  try {
+    return UrlToB64JSON(imagePath);
+  } catch {
+    return UrlToB64JSON('/Users/andreas/git/login-app/src/generic.jpg');
+  }
+};
+
+
+const UrlToB64JSON = (url) => {
+  const imageBuffer = fs.readFileSync(url);
+  return { data: imageBuffer.toString('base64') };
+}
+
+const savePhoto = async (email, image) => {
+
+  // Check directory exists and if not, create it.
+  try {
+    if (!fs.existsSync(userDataLocation + email))
+      fs.mkdirSync(userDataLocation + email, { recursive: true });
+
+  } catch {
+    return 'error';
   }
 
-  // The name of the input field (i.e. "image") is used to retrieve the uploaded file
-  image = req.files.image;
-  uploadPath = __dirname + '/uploads/' + image.name;
+  // Set image location.
+  imageLocation = userDataLocation + email + '/photo';
 
-  // Use the mv() method to place the file somewhere on your server
-  image.mv(uploadPath, function(err) {
-    if (err)
-      return res.status(500).send(err);
-
-    res.send('ok');
+  // 1. Save file on server.
+  const saveFunc = image.mv(imageLocation, (err) => {
+    if (err) {
+      console.error(`Error saving photo: ${err}`)
+      return 'error';
+    }
   });
+
+  if (saveFunc === 'error')
+    return 'error';
+
+  // 2. Save imageURL to Database.
+  try {
+    await sql.query(
+      'UPDATE users SET profile_photo_url = $1 WHERE email = $2',
+      [imageLocation, email]
+    );
+    return 'ok';
+  } catch {
+    return 'error';
+  }
+
+};
+
+///////// Photo ROUTES /////////
+
+app.post('/updatePhoto', async (req, res) => {
+
+  // Check if user is signed in.
+  const user = req.session.user;
+  if (user) {
+
+    if (!req.files || Object.keys(req.files).length === 0)
+      return res.status(400).send('No files were uploaded.')
+
+    const status = await savePhoto(user.email, req.files.image);
+
+    if (status === 'ok')
+      res.json(UrlToB64JSON(userDataLocation + user.email + '/photo'));
+    else
+      res.send('Error saving photo');
+  } else {
+    res.send('Unauthorized access.');
+  }
+});
+
+app.get('/getProfilePhoto', async (req, res) => {
+
+  // Check if user is signed in.
+  const user = req.session.user;
+  if (user)
+    res.json(await getPhoto(user.email));
+  else
+    res.send('unauthorised');
 
 });
 
-// Start Server
+
+const deletePhoto = async (email) => {
+
+  // 1. Try to delete file from server.
+  try {
+    fs.unlinkSync(userDataLocation + email + '/photo');
+  } catch {
+    return 'Error deleting file from server.';
+  }
+
+  // 2. Try to delete URL from Database.
+  try {
+    await sql.query(
+      'UPDATE users SET profile_photo_url = $1 WHERE email = $2',
+      [null, email]
+    );
+  } catch {
+    return 'Error setting the photo URL in the Database to null';
+  }
+
+  return 'ok';
+};
+
+app.post('/removeProfilePhoto', async (req, res) => {
+
+  // Check if user is signed in.
+  const user = req.session.user;
+  if (user) {
+
+    const status = await deletePhoto(user.email);
+
+    if (status === 'ok')
+      res.redirect('/settings');
+    else
+      res.send(status);
+    
+  } else
+    res.send('Unauthorised.');
+
+});
+
+////// START SERVER //////
 app.listen(PORT, () => {
   console.log(`Server started on port ${PORT}.`);
 });
+
+
+// function statusInterpreter(status) {
+
+//   if (status === 0)
+//     return "Everything okay";
+//   else if (status === 1)
+//     return "Error";
+
+
+//   return null;
+// }

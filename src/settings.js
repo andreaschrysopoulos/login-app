@@ -11,10 +11,18 @@ const stDelete = document.querySelector('#section-delete');
 const photoPreview = document.getElementById('photoPreview');
 const selectedPhoto = document.getElementById('selectedPhoto');
 const sendButton = document.getElementById('sendbutton');
+const btnRemovePhoto = document.getElementById('btnRemovePhoto');
+
+const img2 = document.querySelector('#userImg');
 
 let intervalID_email, intervalID_password;
 
-
+fetch('/getProfilePhoto')
+  .then(response => response.text())
+  .then((data) => {
+    const dataObject = JSON.parse(data);
+    photoPreview.src = 'data:image/jpg;base64,' + dataObject.data;
+  });
 
 function resetEmailTimer(duration, callback) {
   clearTimeout(intervalID_email);
@@ -30,26 +38,19 @@ function resetPasswordTimer(duration, callback) {
   }, duration);
 }
 
-
-
-
 document.querySelector("#email").addEventListener('input', (event) => {
   document.querySelector("#edit-email").disabled = false;
   document.getElementById('message-email').style.opacity = '0';
-
-
 });
 
 document.querySelector("#newPassword").addEventListener('input', (event) => {
   document.querySelector("#edit-password").disabled = false;
   document.getElementById('message-password').style.opacity = '0';
-
 });
 
 document.querySelector("#confirmNewPassword").addEventListener('input', (event) => {
   document.querySelector("#edit-password").disabled = false;
   document.getElementById('message-password').style.opacity = '0';
-
 });
 
 document.querySelector('#form-email').addEventListener('submit', async (e) => {
@@ -161,8 +162,6 @@ document.querySelector('#form-pass').addEventListener('submit', async (e) => {
 });
 
 
-
-
 miPhoto.addEventListener('click', (event) => {
   miPhoto.classList.add('dark:bg-stone-800', 'bg-stone-200');
   miEmail.classList.remove('dark:bg-stone-800', 'bg-stone-200');
@@ -235,13 +234,21 @@ selectedPhoto.addEventListener('change', async (e) => {
   });
 
   if (!response.ok) {
-    console.log("error");
+    console.log("Error receving photo from server after sending it.");
   } else {
-    response.text().then(text => {
-      if (text === 'ok') {
-        localStorage.setItem
-      }
+    response.text().then(data => {
+      const dataObject = JSON.parse(data);
+      photoPreview.src = 'data:image/jpg;base64,' + dataObject.data;
+      img2.src = 'data:image/jpg;base64,' + dataObject.data;
     })
   }
 
 });
+
+btnRemovePhoto.addEventListener('click', async (e) => {
+  const response = await fetch('/removeProfilePhoto', { method: 'POST' });
+
+  if (response.redirected) {
+    window.location.href = response.url; // Manually follow the redirect
+  }
+})

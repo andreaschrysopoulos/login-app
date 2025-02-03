@@ -22,8 +22,9 @@
         <p class="text-sm dark:text-stone-300 mt-2 mb-5">Update your profile photo.</p>
 
         <input id="selectedPhoto" type="file" accept="image/*" style="display: none;">
-        <img id="photoPreview" src="generic.jpg"
-          class="cursor-pointer mt-4 rounded-full border border-stone-300 w-36 h-36" title="Update photo">
+        <img id="photoPreview"
+          class="cursor-pointer mt-4 rounded-full border border-stone-200 dark:border-stone-800 w-36 h-36" title="Update photo">
+        <button id="btnRemovePhoto" class="transition-all duration-75 text-sm mt-5 mb-2 text-stone-900 dark:text-stone-100 hover:bg-stone-200 dark:hover:bg-stone-800 rounded-lg px-3 py-1 border border-stone-200 dark:border-stone-800 dark:active:bg-stone-800 active:bg-stone-200 cursor-pointer">Remove photo</button>
       </div>
 
       <div id="section-email" class="flex flex-col" style="display: none">
@@ -72,7 +73,7 @@
         <p class="text-sm text-center dark:text-stone-300 mt-2 mb-5">Permenantly delete your account.</p>
         <form class="flex justify-center w-full mt-5" action="/deleteAccount" method="post">
           <button
-            class="w-fit border dark:border-stone-800 dark:hover:bg-stone-900 dark:active:bg-stone-900 border-stone-300 hover:bg-stone-100 active:bg-stone-100 rounded-lg transition-all duration-200 dark:text-red-500 text-red-700 px-4 py-1 cursor-pointer"
+            class="w-fit border dark:border-stone-800 dark:hover:bg-stone-800 dark:active:bg-stone-900 border-stone-200 hover:bg-stone-200 active:bg-stone-200 rounded-lg transition-all duration-75 dark:text-red-500 text-red-700 px-4 py-1 cursor-pointer"
             type="submit">Delete
             account</button>
         </form>

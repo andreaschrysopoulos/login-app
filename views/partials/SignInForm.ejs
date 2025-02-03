@@ -1,32 +1,39 @@
 <div class="flex flex-col flex-1 justify-center items-center p-4">
-  
-  <section class="formContainer">
-    
+
+  <section
+    class="flex flex-col max-w-[400px] min-w-[300px] w-full h-fit px-5 py-4 bg-stone-100 dark:bg-stone-900 rounded-lg border border-stone-200 dark:border-stone-800">
+
     <div class="mb-5">
-      <h2 class="formHeader">Sign in</h2>
+      <h2 class="text-3xl text-center font-bold dark:text-stone-200">Sign in</h2>
     </div>
-  
+
     <form id="login-form" class="flex flex-col">
-  
+
       <!-- Email -->
-      <label class="lblInput" for="email">Email</label>
-      <input class="textInput" type="email" id="email" name="email" autocomplete="on" required>
-  
+      <label class="mb-2 text-stone-700 dark:text-stone-300" for="eemail">Email</label>
+      <input
+        class="text-sm px-3 py-1.5 mb-3 focus:outline-blue-300 dark:focus:outline-blue-900 focus:outline-2 dark:text-stone-100 border border-stone-300 dark:border-stone-700 rounded-lg dark:bg-stone-800 bg-stone-200"
+        type="email" id="eemail" autocomplete="on" required>
+
       <!-- Password -->
-      <label class="lblInput " for="password">Password</label>
-      <input class="textInput" type="password" id="password" name="password" autocomplete="on" required>
-  
+      <label class="mb-2 text-stone-700 dark:text-stone-300 " for="password">Password</label>
+      <input
+        class="text-sm px-3 py-1.5 mb-3 focus:outline-blue-300 dark:focus:outline-blue-900 focus:outline-2 dark:text-stone-100 border border-stone-300 dark:border-stone-700 rounded-lg dark:bg-stone-800 bg-stone-200"
+        type="password" id="password" autocomplete="on" required>
+
       <!-- Message -->
       <div id="message" class="mt-1 text-sm self-center"></div>
-  
+
       <!-- Button -->
-      <button class="transition-colors duration-150 disabled:bg-stone-400 dark:disabled:bg-stone-600 bg-blue-500 hover:bg-blue-600 active:bg-blue-600 text-stone-50 hover:text-white active:text-white dark:bg-blue-600 dark:hover:bg-blue-700 dark:active:bg-blue-700 dark:text-stone-100 hover:dark:text-white dark:active:text-white rounded-lg cursor-pointer mt-4 py-1.5" type="submit">Sign in</button>
+      <button
+        class="transition-colors duration-150 disabled:bg-stone-400 dark:disabled:bg-stone-600 bg-blue-500 hover:bg-blue-600 active:bg-blue-600 text-stone-50 hover:text-white active:text-white dark:bg-blue-600 dark:hover:bg-blue-700 dark:active:bg-blue-700 dark:text-stone-100 hover:dark:text-white dark:active:text-white rounded-lg cursor-pointer mt-4 py-1.5"
+        type="submit">Sign in</button>
     </form>
-  
+
     <!-- Create new account -->
     <div class="w-fit mt-4 text-stone-700 dark:text-stone-300 self-center text-sm">
       <a class="hover:underline" href="/register">Create new account</a>
     </div>
-  
+
   </section>
 </div>

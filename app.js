@@ -235,12 +235,16 @@ const getPhoto = async (email) => {
   let imagePath = sqlResult.rows[0].profile_photo_url;
 
   if (imagePath === '')
-    imagePath = __dirname + 'src/generic.jpg';
+    imagePath = __dirname + '/src/generic.jpg';
 
   try {
     return UrlToB64JSON(imagePath);
   } catch {
-    return UrlToB64JSON(__dirname + 'src/generic.jpg');
+    try {
+      return UrlToB64JSON(__dirname + '/src/generic.jpg');
+    } catch{
+      return null;
+    }
   }
 };
 

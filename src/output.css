@@ -605,6 +605,9 @@
   .h-36 {
     height: calc(var(--spacing) * 36);
   }
+  .h-\[30px\] {
+    height: 30px;
+  }
   .h-dvh {
     height: 100dvh;
   }
@@ -620,6 +623,9 @@
   .max-h-36 {
     max-height: calc(var(--spacing) * 36);
   }
+  .max-h-\[30px\] {
+    max-height: 30px;
+  }
   .max-h-\[450px\] {
     max-height: 450px;
   }
@@ -631,6 +637,9 @@
   }
   .min-h-36 {
     min-height: calc(var(--spacing) * 36);
+  }
+  .min-h-\[30px\] {
+    min-height: 30px;
   }
   .w-36 {
     width: calc(var(--spacing) * 36);

@@ -235,12 +235,12 @@ const getPhoto = async (email) => {
   let imagePath = sqlResult.rows[0].profile_photo_url;
 
   if (imagePath === '')
-    imagePath = '/Users/andreas/git/login-app/src/generic.jpg';
+    imagePath = __dirname + 'src/generic.jpg';
 
   try {
     return UrlToB64JSON(imagePath);
   } catch {
-    return UrlToB64JSON('/Users/andreas/git/login-app/src/generic.jpg');
+    return UrlToB64JSON(__dirname + 'src/generic.jpg');
   }
 };
 
@@ -356,7 +356,7 @@ app.post('/removeProfilePhoto', async (req, res) => {
       res.redirect('/settings');
     else
       res.send(status);
-    
+
   } else
     res.send('Unauthorised.');
 

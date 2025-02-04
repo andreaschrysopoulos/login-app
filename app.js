@@ -234,10 +234,16 @@ const getPhoto = async (email) => {
 
   let imagePath = sqlResult.rows[0].profile_photo_url;
 
+  // Check if the database entry is empty, and if so, serve the generic image.
   if (!imagePath)
-    imagePath = __dirname + '/serverData/generic.jpg';
+    return __dirname + '/serverData/generic.jpg';
 
-  return imagePath;
+  // Check if file actually exists
+  if (fs.existsSync(imagePath))
+    return imagePath
+  else
+    return __dirname + '/serverData/generic.jpg';
+
 };
 
 

@@ -6,8 +6,8 @@
     <a class="" href="/">Clandestine Operations</a>
   </p>
 
-  <img id="userImg"
-    class="w-[30px] min-w-[30px] max-w-[30px] h-[30px] min-h-[30px] max-h-[30px] rounded-full hover:cursor-pointer border border-stone-300 dark:border-stone-800" title="Menu">
+  <img id="userImg" src="/profilePhoto"
+    class="object-cover w-[30px] min-w-[30px] max-w-[30px] h-[30px] min-h-[30px] max-h-[30px] rounded-full hover:cursor-pointer border border-stone-300 dark:border-stone-800" title="Menu">
 
   <div id="popupMenu"
     class="hidden transition-all duration-100 flex-col bg-stone-100 dark:bg-stone-900 dark:text-stone-100 border dark:border-stone-800 border-stone-200 p-2 absolute top-9 right-2 m-2 z-50 rounded-lg">
@@ -32,8 +32,8 @@
       </li>
 
       <li>
-        <form class="" action="/logout" method="post">
-          <button
+        <form action="/logout" method="post">
+          <button id="logout"
             class="w-full hover:bg-stone-200 dark:hover:bg-stone-800 active:bg-stone-200 dark:active:bg-stone-800 rounded-lg p-1 px-3 text-end cursor-pointer"
             type="submit">
             Sign out

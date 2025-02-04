@@ -142,7 +142,7 @@ app.post('/logout', (req, res) => {
       console.log(err);
       res.status(500).send('Could not log out.');
     } else {
-      res.send('<script>localStorage.clear(); window.location.href = "/";</script>');
+      res.redirect('/');
     }
   });
 });
@@ -234,25 +234,12 @@ const getPhoto = async (email) => {
 
   let imagePath = sqlResult.rows[0].profile_photo_url;
 
-  if (imagePath === '')
-    imagePath = __dirname + '/src/generic.jpg';
+  if (!imagePath)
+    imagePath = __dirname + '/userData/generic.jpg';
 
-  try {
-    return UrlToB64JSON(imagePath);
-  } catch {
-    try {
-      return UrlToB64JSON(__dirname + '/src/generic.jpg');
-    } catch{
-      return null;
-    }
-  }
+  return imagePath;
 };
 
-
-const UrlToB64JSON = (url) => {
-  const imageBuffer = fs.readFileSync(url);
-  return { data: imageBuffer.toString('base64') };
-}
 
 const savePhoto = async (email, image) => {
 
@@ -306,23 +293,12 @@ app.post('/updatePhoto', async (req, res) => {
     const status = await savePhoto(user.email, req.files.image);
 
     if (status === 'ok')
-      res.json(UrlToB64JSON(userDataLocation + user.email + '/photo'));
+      res.redirect('/settings');
     else
-      res.send('Error saving photo');
+      res.send(status);
   } else {
     res.send('Unauthorized access.');
   }
-});
-
-app.get('/getProfilePhoto', async (req, res) => {
-
-  // Check if user is signed in.
-  const user = req.session.user;
-  if (user)
-    res.json(await getPhoto(user.email));
-  else
-    res.send('unauthorised');
-
 });
 
 
@@ -366,19 +342,17 @@ app.post('/removeProfilePhoto', async (req, res) => {
 
 });
 
+
+app.get('/profilePhoto', async (req, res) => {
+  // Check if user is signed in.
+  const user = req.session.user;
+  if (user)
+    res.sendFile(await getPhoto(user.email));
+  else
+    res.redirect('/');
+});
+
 ////// START SERVER //////
 app.listen(PORT, () => {
   console.log(`Server started on port ${PORT}.`);
 });
-
-
-// function statusInterpreter(status) {
-
-//   if (status === 0)
-//     return "Everything okay";
-//   else if (status === 1)
-//     return "Error";
-
-
-//   return null;
-// }

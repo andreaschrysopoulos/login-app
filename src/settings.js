@@ -17,13 +17,6 @@ const img2 = document.querySelector('#userImg');
 
 let intervalID_email, intervalID_password;
 
-fetch('/getProfilePhoto')
-  .then(response => response.text())
-  .then((data) => {
-    const dataObject = JSON.parse(data);
-    photoPreview.src = 'data:image/jpg;base64,' + dataObject.data;
-  });
-
 function resetEmailTimer(duration, callback) {
   clearTimeout(intervalID_email);
   intervalID_email = setTimeout(() => {
@@ -235,12 +228,8 @@ selectedPhoto.addEventListener('change', async (e) => {
 
   if (!response.ok) {
     console.log("Error receving photo from server after sending it.");
-  } else {
-    response.text().then(data => {
-      const dataObject = JSON.parse(data);
-      photoPreview.src = 'data:image/jpg;base64,' + dataObject.data;
-      img2.src = 'data:image/jpg;base64,' + dataObject.data;
-    })
+  } else if (response.redirected) {
+    window.location.href = response.url; // Manually follow the redirect
   }
 
 });

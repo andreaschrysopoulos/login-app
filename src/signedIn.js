@@ -2,13 +2,9 @@ const header = document.querySelectorAll('.userEmail');
 const popupMenu = document.querySelector('#popupMenu');
 const img = document.querySelector('#userImg');
 
-
-fetch('/getProfilePhoto')
-  .then(response => response.text())
-  .then((data) => {
-    const dataObject = JSON.parse(data);
-    img.src = 'data:image/jpg;base64,' + dataObject.data;
-  });
+document.getElementById('logout').addEventListener('click', () => {
+  localStorage.clear();
+});
 
 fetch('/data')
   .then(respose => respose.text())
@@ -25,4 +21,3 @@ document.addEventListener('click', (event) => {
 img.addEventListener('click', () => {
   popupMenu.classList.toggle('hidden');
 });
-

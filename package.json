@@ -7,7 +7,7 @@
   "type": "commonjs",
   "main": "app.js",
   "scripts": {
-    "tail": "npx @tailwindcss/cli -i ./src/input.css -o ./src/output.css --watch",
+    "tail": "npx @tailwindcss/cli -i ./input.css -o ./src/style.css --watch",
     "dev": "node --watch app.js"
   },
   "dependencies": {

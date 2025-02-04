@@ -521,20 +521,8 @@
   }
 }
 @layer utilities {
-  .collapse {
-    visibility: collapse;
-  }
-  .invisible {
-    visibility: hidden;
-  }
-  .visible {
-    visibility: visible;
-  }
   .absolute {
     position: absolute;
-  }
-  .fixed {
-    position: fixed;
   }
   .relative {
     position: relative;
@@ -545,20 +533,17 @@
   .top-9 {
     top: calc(var(--spacing) * 9);
   }
-  .right-0 {
-    right: calc(var(--spacing) * 0);
-  }
   .right-2 {
     right: calc(var(--spacing) * 2);
-  }
-  .right-10 {
-    right: calc(var(--spacing) * 10);
   }
   .z-50 {
     z-index: 50;
   }
   .m-2 {
     margin: calc(var(--spacing) * 2);
+  }
+  .my-10 {
+    margin-block: calc(var(--spacing) * 10);
   }
   .mt-1 {
     margin-top: calc(var(--spacing) * 1);
@@ -593,14 +578,8 @@
   .hidden {
     display: none;
   }
-  .inline-flex {
-    display: inline-flex;
-  }
-  .list-item {
-    display: list-item;
-  }
-  .table {
-    display: table;
+  .h-32 {
+    height: calc(var(--spacing) * 32);
   }
   .h-36 {
     height: calc(var(--spacing) * 36);
@@ -619,6 +598,9 @@
   }
   .h-max {
     height: max-content;
+  }
+  .max-h-32 {
+    max-height: calc(var(--spacing) * 32);
   }
   .max-h-36 {
     max-height: calc(var(--spacing) * 36);
@@ -641,6 +623,9 @@
   .min-h-\[30px\] {
     min-height: 30px;
   }
+  .w-32 {
+    width: calc(var(--spacing) * 32);
+  }
   .w-36 {
     width: calc(var(--spacing) * 36);
   }
@@ -652,6 +637,9 @@
   }
   .w-full {
     width: 100%;
+  }
+  .max-w-32 {
+    max-width: calc(var(--spacing) * 32);
   }
   .max-w-36 {
     max-width: calc(var(--spacing) * 36);
@@ -689,20 +677,11 @@
   .flex-auto {
     flex: auto;
   }
-  .border-collapse {
-    border-collapse: collapse;
-  }
-  .transform {
-    transform: var(--tw-rotate-x) var(--tw-rotate-y) var(--tw-rotate-z) var(--tw-skew-x) var(--tw-skew-y);
-  }
   .cursor-default {
     cursor: default;
   }
   .cursor-pointer {
     cursor: pointer;
-  }
-  .resize {
-    resize: both;
   }
   .flex-col {
     flex-direction: column;
@@ -753,14 +732,6 @@
     border-style: var(--tw-border-style);
     border-width: 1px;
   }
-  .border-2 {
-    border-style: var(--tw-border-style);
-    border-width: 2px;
-  }
-  .border-4 {
-    border-style: var(--tw-border-style);
-    border-width: 4px;
-  }
   .border-t {
     border-top-style: var(--tw-border-style);
     border-top-width: 1px;
@@ -772,9 +743,6 @@
   .border-l {
     border-left-style: var(--tw-border-style);
     border-left-width: 1px;
-  }
-  .border-stone-100 {
-    border-color: var(--color-stone-100);
   }
   .border-stone-200 {
     border-color: var(--color-stone-200);
@@ -791,11 +759,11 @@
   .bg-stone-200 {
     background-color: var(--color-stone-200);
   }
-  .bg-stone-300 {
-    background-color: var(--color-stone-300);
-  }
   .bg-white {
     background-color: var(--color-white);
+  }
+  .object-cover {
+    object-fit: cover;
   }
   .p-1 {
     padding: calc(var(--spacing) * 1);
@@ -871,9 +839,6 @@
   .text-green-600 {
     color: var(--color-green-600);
   }
-  .text-red-600 {
-    color: var(--color-red-600);
-  }
   .text-red-700 {
     color: var(--color-red-700);
   }
@@ -888,13 +853,6 @@
   }
   .text-stone-900 {
     color: var(--color-stone-900);
-  }
-  .underline {
-    text-decoration-line: underline;
-  }
-  .outline {
-    outline-style: var(--tw-outline-style);
-    outline-width: 1px;
   }
   .transition-all {
     transition-property: all;
@@ -918,36 +876,10 @@
     --tw-duration: 150ms;
     transition-duration: 150ms;
   }
-  .duration-200 {
-    --tw-duration: 200ms;
-    transition-duration: 200ms;
-  }
-  .hover\:visible {
-    &:hover {
-      @media (hover: hover) {
-        visibility: visible;
-      }
-    }
-  }
   .hover\:cursor-pointer {
     &:hover {
       @media (hover: hover) {
         cursor: pointer;
-      }
-    }
-  }
-  .hover\:border {
-    &:hover {
-      @media (hover: hover) {
-        border-style: var(--tw-border-style);
-        border-width: 1px;
-      }
-    }
-  }
-  .hover\:border-stone-300 {
-    &:hover {
-      @media (hover: hover) {
-        border-color: var(--color-stone-300);
       }
     }
   }
@@ -958,24 +890,10 @@
       }
     }
   }
-  .hover\:bg-stone-100 {
-    &:hover {
-      @media (hover: hover) {
-        background-color: var(--color-stone-100);
-      }
-    }
-  }
   .hover\:bg-stone-200 {
     &:hover {
       @media (hover: hover) {
         background-color: var(--color-stone-200);
-      }
-    }
-  }
-  .hover\:text-red-600 {
-    &:hover {
-      @media (hover: hover) {
-        color: var(--color-red-600);
       }
     }
   }
@@ -1009,11 +927,6 @@
       background-color: var(--color-blue-600);
     }
   }
-  .active\:bg-stone-100 {
-    &:active {
-      background-color: var(--color-stone-100);
-    }
-  }
   .active\:bg-stone-200 {
     &:active {
       background-color: var(--color-stone-200);
@@ -1042,6 +955,11 @@
   .dark\:border-stone-800 {
     @media (prefers-color-scheme: dark) {
       border-color: var(--color-stone-800);
+    }
+  }
+  .dark\:border-white {
+    @media (prefers-color-scheme: dark) {
+      border-color: var(--color-white);
     }
   }
   .dark\:bg-blue-600 {
@@ -1107,15 +1025,6 @@
       }
     }
   }
-  .dark\:hover\:bg-stone-900 {
-    @media (prefers-color-scheme: dark) {
-      &:hover {
-        @media (hover: hover) {
-          background-color: var(--color-stone-900);
-        }
-      }
-    }
-  }
   .dark\:hover\:text-white {
     @media (prefers-color-scheme: dark) {
       &:hover {
@@ -1145,13 +1054,6 @@
     @media (prefers-color-scheme: dark) {
       &:active {
         background-color: var(--color-blue-700);
-      }
-    }
-  }
-  .dark\:active\:bg-stone-200 {
-    @media (prefers-color-scheme: dark) {
-      &:active {
-        background-color: var(--color-stone-200);
       }
     }
   }
@@ -1217,31 +1119,6 @@
     animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
   }
 }
-@property --tw-rotate-x {
-  syntax: "*";
-  inherits: false;
-  initial-value: rotateX(0);
-}
-@property --tw-rotate-y {
-  syntax: "*";
-  inherits: false;
-  initial-value: rotateY(0);
-}
-@property --tw-rotate-z {
-  syntax: "*";
-  inherits: false;
-  initial-value: rotateZ(0);
-}
-@property --tw-skew-x {
-  syntax: "*";
-  inherits: false;
-  initial-value: skewX(0);
-}
-@property --tw-skew-y {
-  syntax: "*";
-  inherits: false;
-  initial-value: skewY(0);
-}
 @property --tw-border-style {
   syntax: "*";
   inherits: false;
@@ -1251,12 +1128,12 @@
   syntax: "*";
   inherits: false;
 }
+@property --tw-duration {
+  syntax: "*";
+  inherits: false;
+}
 @property --tw-outline-style {
   syntax: "*";
   inherits: false;
   initial-value: solid;
-}
-@property --tw-duration {
-  syntax: "*";
-  inherits: false;
 }

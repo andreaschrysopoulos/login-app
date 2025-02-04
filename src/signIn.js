@@ -12,7 +12,7 @@ document.querySelector('#login-form').addEventListener('submit', async (e) => {
   const password = document.getElementById('password').value.trim();
   const message = document.getElementById('message');
   const button = document.querySelector('button');
-  
+
   try {
     const response = await fetch('/login', {
       method: 'POST',
@@ -29,7 +29,7 @@ document.querySelector('#login-form').addEventListener('submit', async (e) => {
           button.style.disabled = "true";
           button.disabled = true;
           redirect();
-        } else if(text === 'credentials') {
+        } else if (text === 'credentials') {
           message.innerText = "Incorrect credentials.";
           message.style.color = 'rgb(220, 0, 0)';
         } else {
@@ -50,3 +50,4 @@ function redirect() {
     location.reload(true);
   }, 500);
 }
+
